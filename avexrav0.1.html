@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Avexra Digital — Growth Infrastructure Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Geist';
+    src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist:vf@latest/latin-wght-normal.woff2') format('woff2-variations');
+    font-weight: 100 900;
+    font-display: swap;
+  }
+
+  :root {
+    --bg: #030406; /* Deep obsidian black core */
+    --text-primary: #f4f4f6; /* Soft titanium white */
+    --text-secondary: #8a99ad; /* Muted steel-slate */
+    --text-muted: #2d3544; /* Clean structural metadata grey */
+    --accent: #3e529a; /* Calibrated desaturated metallic slate blue */
+    --accent-bright: #5870e0; /* Active operational blue */
+    --transition-curve: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* SCREEN-LOCKED VIEWPORT SYSTEM */
+  html, body {
+    background: var(--bg);
+    color: var(--text-primary);
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  @media (min-height: 768px) and (min-width: 1121px) {
+    html, body {
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden; /* Absolute containment on standard desktop displays */
+    }
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    min-height: 100dvh;
+    cursor: none; /* Hide default platform cursor for premium tailored asset rendering */
+    
+    /* Multilayered volumetric ambient lighting cores */
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(circle at 35% 40%, rgba(255, 255, 255, 0.035) 0%, transparent 60%),
+      radial-gradient(circle at 85% 70%, rgba(77, 102, 184, 0.012) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.008) 0%, transparent 45%);
+    background-attachment: fixed;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  /* ELITE HIGH-SPEED LOADING OVERLAY */
+  #avexra-preloader {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #030406;
+    z-index: 200000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.75s var(--transition-curve), opacity 0.5s ease;
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.003) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.003) 1px, transparent 1px);
+    background-size: 40px 40px;
+    padding: 24px;
+  }
+
+  .loader-centerpiece {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .loader-brand {
+    font-family: 'Geist', 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.55em;
+    color: var(--text-primary);
+    text-indent: 0.55em;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .loader-brand .dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent-bright);
+    margin-left: -2px;
+    box-shadow: 0 0 8px var(--accent-bright);
+  }
+
+  .loader-track {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.04);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .loader-bar {
+    position: absolute;
+    top: 0; left: 0; height: 100%; width: 0%;
+    background: var(--accent-bright);
+    box-shadow: 0 0 4px var(--accent-bright);
+    transition: width 0.05s linear;
+  }
+
+  .loader-metadata {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  #loader-log {
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%;
+  }
+
+  /* PREMIUM CUSTOM HYBRID CURSOR */
+  .cursor-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--text-primary);
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 100000;
+    transition: 
+      width 0.2s var(--transition-curve), 
+      height 0.2s var(--transition-curve), 
+      background-color 0.2s var(--transition-curve),
+      transform 0.2s var(--transition-curve);
+    opacity: 0; 
+  }
+
+  .cursor-ring {
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(77, 102, 184, 0.35);
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 99999;
+    transform-origin: center;
+    transition: 
+      border-color 0.3s var(--transition-curve), 
+      background-color 0.3s var(--transition-curve), 
+      width 0.25s var(--transition-curve), 
+      height 0.25s var(--transition-curve),
+      border-radius 0.25s var(--transition-curve);
+    opacity: 0; 
+  }
+
+  body.cursor-magnetic .cursor-ring {
+    border-color: rgba(88, 112, 224, 0.6);
+    background-color: rgba(88, 112, 224, 0.03);
+  }
+
+  body.cursor-magnetic .cursor-dot {
+    background-color: var(--accent-bright);
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+
+  /* MASTER LAYOUT FRAMEWORK CONTAINER */
+  .wrap {
+    max-width: 1720px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    position: relative;
+    padding-left: 10%;
+    padding-right: 10%;
+    z-index: 2;
+  }
+
+  /* 1. HEADER */
+  .header-system {
+    padding-top: 6vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+  }
+  
+  .logo {
+    font-family: 'Geist', 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.45em;
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: none;
+  }
+  
+  .logo .dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+    margin-left: 0px;
+  }
+
+  .nav-coordinates {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.18);
+    user-select: none;
+  }
+
+  /* 2. DUAL INTERFACE COLUMN ENGINE */
+  .main-split {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6%;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-container {
+    flex: 1 1 50%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  /* IMMACULATE CALIBRATED FLUID TYPOGRAPHY */
+  h1 {
+    font-family: 'Geist', 'Inter', sans-serif;
+    font-size: clamp(36px, 5.8vw, 98px); /* Lowered minimum threshold prevents mobile overflow */
+    line-height: 1.04;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    display: block;
+  }
+
+  .h1-line-wrapper {
+    display: block;
+    overflow: hidden;
+    vertical-align: bottom;
+  }
+
+  .h1-line {
+    display: block;
+    transform: translateX(-102%);
+    opacity: 0;
+    background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: transform 0.4s var(--transition-curve), filter 0.4s var(--transition-curve);
+  }
+
+  body.site-ready .h1-line {
+    animation: h1Entrance 0.9s var(--transition-curve) forwards;
+  }
+  
+  body.site-ready .h1-line-wrapper:nth-child(1) .h1-line { animation-delay: 0.05s; }
+  body.site-ready .h1-line-wrapper:nth-child(2) .h1-line { animation-delay: 0.12s; }
+  body.site-ready .h1-line-wrapper:nth-child(3) .h1-line { animation-delay: 0.19s; }
+
+  /* Premium horizonal drag response */
+  @media (min-width: 1121px) {
+    h1:hover .h1-line {
+      transform: translate3d(8px, 0, 0);
+      filter: brightness(1.1);
+    }
+    h1:hover .h1-line-wrapper:nth-child(1) .h1-line { transition-delay: 0.0s; }
+    h1:hover .h1-line-wrapper:nth-child(2) .h1-line { transition-delay: 0.03s; }
+    h1:hover .h1-line-wrapper:nth-child(3) .h1-line { transition-delay: 0.06s; }
+  }
+
+  .subtitle-block {
+    margin-top: 40px;
+    max-width: 480px;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: transform 0.8s var(--transition-curve), opacity 0.8s var(--transition-curve);
+  }
+  body.site-ready .subtitle-block {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.32s;
+  }
+
+  .subtitle {
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .subtitle-block .subtitle + .subtitle {
+    margin-top: 16px;
+  }
+
+  /* KINETIC GLASS PARALLAX ACTION ELEMENT */
+  .cta {
+    margin-top: 48px;
+    display: inline-flex;
+    align-items: center;
+    padding: 16px 42px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01) 0%, transparent 100%);
+    text-decoration: none;
+    cursor: none;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: 
+      transform 0.4s var(--transition-curve), 
+      border-color 0.4s var(--transition-curve),
+      background-color 0.4s var(--transition-curve),
+      opacity 0.8s var(--transition-curve);
+    -webkit-tap-highlight-color: transparent;
+  }
+  body.site-ready .cta {
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 0.4s var(--transition-curve), border-color 0.4s var(--transition-curve), background-color 0.4s var(--transition-curve), opacity 0.8s var(--transition-curve);
+    transition-delay: 0s, 0s, 0s, 0.42s;
+  }
+
+  .btn-specular {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 3px;
+    pointer-events: none;
+    background: radial-gradient(circle 90px at var(--b-mx, 50%) var(--b-my, 50%), rgba(88, 112, 224, 0.22) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+
+  .btn-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-primary);
+    font-size: 15px;
+    font-weight: 500;
+    pointer-events: none;
+    z-index: 2;
+    transform-style: preserve-3d;
+    transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .cta svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2.5px;
+    transition: transform 0.3s var(--transition-curve);
+  }
+  
+  .cta:hover {
+    transform: translateY(-2px);
+    border-color: rgba(88, 112, 224, 0.35);
+    background-color: rgba(4, 5, 8, 0.6);
+  }
+
+  .cta:hover .btn-specular {
+    opacity: 1;
+  }
+
+  .cta:hover svg {
+    transform: translate3d(4px, 0, 10px);
+  }
+  
+  .cta:active {
+    transform: translateY(-0.5px) scale(0.98);
+  }
+
+  /* 3. INTERACTIVE METALLIC TELEMETRY WORKBENCH PANEL */
+  .console-wrapper {
+    flex: 1 1 44%;
+    max-width: 580px;
+    width: 100%;
+    position: relative;
+    padding: 1px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 50%, rgba(77, 102, 184, 0.15) 100%);
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.65);
+    opacity: 0;
+    transform: scale(0.98) translate3d(20px, 0, 0);
+    transition: transform 1s var(--transition-curve), opacity 1s var(--transition-curve);
+  }
+  body.site-ready .console-wrapper {
+    opacity: 1;
+    transform: scale(1) translate3d(0, 0, 0);
+    transition-delay: 0.28s;
+  }
+
+  .console-container {
+    width: 100%;
+    height: 440px;
+    background: rgba(4, 5, 8, 0.82);
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    position: relative;
+  }
+
+  .console-grid-watermark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.18;
+    background-image: 
+      radial-gradient(circle at 100% 100%, rgba(88, 112, 224, 0.05) 0%, transparent 40%),
+      linear-gradient(to right, rgba(255, 255, 255, 0.005) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.005) 1px, transparent 1px);
+    background-size: 100% 100%, 20px 20px, 20px 20px;
+    z-index: 0;
+  }
+
+  .console-bar {
+    height: 48px;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.035);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+
+  .console-controls {
+    display: flex;
+    gap: 6.5px;
+    align-items: center;
+  }
+
+  .control-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: background 0.2s ease;
+  }
+
+  .console-wrapper:hover .control-dot:nth-child(1) { background: #ff5f56; }
+  .console-wrapper:hover .control-dot:nth-child(2) { background: #ffbd2e; }
+  .console-wrapper:hover .control-dot:nth-child(3) { background: #27c93f; }
+
+  .console-tabs {
+    display: flex;
+    gap: 4px;
+    height: 100%;
+    align-items: flex-end;
+  }
+
+  .console-tab {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.2);
+    background: transparent;
+    border: none;
+    padding: 0 16px 12px 16px;
+    height: calc(100% - 4px);
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 6px;
+    cursor: none;
+    position: relative;
+    transition: color 0.2s var(--transition-curve);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .console-tab svg {
+    width: 12px;
+    height: 12px;
+    opacity: 0.25;
+    transition: opacity 0.2s ease;
+  }
+
+  .console-tab::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 1.5px;
+    background: transparent;
+    transition: background-color 0.25s var(--transition-curve);
+  }
+
+  .console-tab.active {
+    color: var(--accent-bright);
+  }
+
+  .console-tab.active svg {
+    opacity: 0.85;
+  }
+
+  .console-tab.active::after {
+    background-color: var(--accent-bright);
+  }
+
+  .console-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 9.5px;
+    color: rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  .console-status .light {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent-bright);
+    box-shadow: 0 0 8px var(--accent-bright);
+  }
+
+  .console-body {
+    flex: 1;
+    padding: 24px 24px 24px 28px;
+    overflow-y: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 1;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.06) transparent;
+  }
+
+  .console-body::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  
+  .console-body::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .console-body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+    transition: background 0.2s ease;
+  }
+  
+  .console-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(88, 112, 224, 0.4);
+  }
+
+  /* Syntax Highlighting */
+  .c-prompt { color: rgba(255, 255, 255, 0.15); user-select: none; }
+  .c-command { color: var(--text-primary); }
+  .c-success { color: #52a466; font-weight: 600; }
+  .c-key { color: #8a99ad; }
+  .c-string { color: #5870e0; }
+  .c-value { color: var(--text-primary); }
+  .c-bracket { color: rgba(255, 255, 255, 0.2); }
+
+  .telemetry-stream {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .telemetry-log-item {
+    white-space: nowrap;
+    animation: terminalShift 0.18s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* 4. DYNAMIC HORIZON LINE & FOOTER GRID MAPPING */
+  .footer-system {
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    flex-shrink: 0;
+  }
+
+  .plot-horizon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--hairline);
+    pointer-events: none;
+  }
+
+  .plot-node-left {
+    position: absolute;
+    left: 0;
+    top: -3px;
+    width: 6px;
+    height: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: var(--bg);
+  }
+
+  .footer {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.22);
+  }
+  
+  .footer-left a {
+    color: rgba(255, 255, 255, 0.22);
+    text-decoration: none;
+    cursor: none;
+    transition: color 0.2s ease;
+  }
+  
+  .footer-left a:hover {
+    color: var(--text-secondary);
+  }
+  
+  .footer-left .sep {
+    font-size: 5px;
+    opacity: 0.3;
+  }
+
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    color: rgba(255, 255, 255, 0.22);
+    text-transform: uppercase;
+  }
+  
+  .footer-right .v {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* FROSTED BROWSER CONTEXT PANEL OVERLAY */
+  .custom-context-menu {
+    position: fixed;
+    background: rgba(9, 10, 15, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 6px;
+    min-width: 240px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8);
+    z-index: 100001;
+    display: none;
+    pointer-events: auto;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    user-select: none;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    animation: menuFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .context-item {
+    padding: 8px 12px;
+    font-size: 12.5px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    border-radius: 4px;
+    cursor: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.1s var(--transition-curve), color 0.1s var(--transition-curve);
+  }
+
+  .context-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+  }
+
+  .context-shortcut {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.15);
+  }
+
+  .context-sep {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.04);
+    margin: 4px;
+  }
+
+  /* TOAST ERROR NOTIFICATION STACK */
+  .telemetry-toast {
+    position: fixed;
+    bottom: calc(6vh + 60px);
+    left: 10%;
+    background: rgba(9, 10, 15, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    padding: 12px 18px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--text-secondary);
+    pointer-events: none;
+    z-index: 99999;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.4s var(--transition-curve), opacity 0.4s var(--transition-curve);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .telemetry-toast.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* RIGOROUS MOBILE BREAKPOINT MEDIA ARCHITECTURE */
+  @media (max-width: 1120px) {
+    body {
+      cursor: auto !important; /* Restore standard system pointer for capacitive screens */
+    }
+    .cursor-dot, .cursor-ring {
+      display: none !important; /* Strip custom cursor markup on mobile layout viewports */
+    }
+    .wrap {
+      grid-template-rows: auto auto auto;
+      padding-left: 6%;
+      padding-right: 6%;
+    }
+    .main-split {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 56px;
+      padding: 48px 0;
+    }
+    .hero-container, .console-wrapper {
+      width: 100%;
+      max-width: 100%;
+    }
+    .console-wrapper {
+      transform: scale(0.98) translate3d(0, 16px, 0);
+    }
+    body.site-ready .console-wrapper {
+      transform: scale(1) translate3d(0, 0, 0);
+    }
+    .console-container {
+      height: 380px;
+    }
+    .plot-horizon {
+      display: none;
+    }
+    .footer {
+      padding-top: 32px;
+      padding-bottom: 24px;
+    }
+    .h1-line-wrapper {
+      overflow: visible !important;
+    }
+    .h1-line {
+      transform: none !important;
+      opacity: 1 !important;
+      background: none !important;
+      -webkit-background-clip: initial !important;
+      -webkit-text-fill-color: initial !important;
+      color: var(--text-primary) !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .wrap {
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+    .header-system { padding-top: 36px; }
+    h1 { font-size: clamp(34px, 10vw, 52px); letter-spacing: -0.04em; line-height: 1.05; }
+    .subtitle-block { margin-top: 32px; opacity: 1 !important; transform: none !important; }
+    .cta { margin-top: 36px; padding: 14px 28px; width: 100%; justify-content: center; opacity: 1 !important; transform: none !important; }
+    .footer { 
+      flex-direction: column; 
+      align-items: flex-start; 
+      gap: 20px;
+    }
+  }
+
+  @keyframes menuFadeIn {
+    from { opacity: 0; transform: scale(0.97); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes terminalShift {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* HARDWARE REVEAL TRANSITION ENGINE (SLIDES STABLY FROM LEFT) */
+  @keyframes h1Entrance {
+    0% { transform: translateX(-102%); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- HIGH FIDELITY SYSTEM INITIALIZATION PRELOADER (Adaptive Mobile Scale) -->
+  <div id="avexra-preloader">
+    <div class="loader-centerpiece">
+      <div class="loader-brand">AVEXRA<span class="dot"></span></div>
+      <div class="loader-track"><div class="loader-bar" id="loader-bar"></div></div>
+      <div class="loader-metadata">
+        <span id="loader-log">SYS // Booting threads...</span>
+        <span id="loader-pct">000%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Core Cursor Nodes -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <!-- Frosted System Context Menu Overlay -->
+  <div class="custom-context-menu" id="context-menu">
+    <div class="context-item" id="context-back">
+      Back <span class="context-shortcut">⌥&larr;</span>
+    </div>
+    <div class="context-item" id="context-forward">
+      Forward <span class="context-shortcut">⌥&rarr;</span>
+    </div>
+    <div class="context-item" id="context-reload">
+      Reload <span class="context-shortcut">⌘R</span>
+    </div>
+    <div class="context-sep"></div>
+    <div class="context-item" id="context-save">
+      Save Page As... <span class="context-shortcut">⌘S</span>
+    </div>
+    <div class="context-item" id="context-print">
+      Print... <span class="context-shortcut">⌘P</span>
+    </div>
+    <div class="context-sep"></div>
+    <div class="context-item" id="context-source">
+      View Page Source <span class="context-shortcut">⌘U</span>
+    </div>
+    <div class="context-item" id="context-inspect">
+      Inspect Element <span class="context-shortcut">⌥⌘I</span>
+    </div>
+  </div>
+
+  <!-- Telemetry Output Toast System -->
+  <div class="telemetry-toast" id="toast">
+    [INFO] Process sequence verified.
+  </div>
+
+  <div class="wrap" id="scene">
+    <!-- 1. HEADER (Top Grid Alignment block) -->
+    <header class="header-system">
+      <a href="/" class="logo magnet-target">AVEXRA<span class="dot"></span></a>
+      <div class="nav-coordinates">41.0082° N, 28.9784° E</div>
+    </header>
+
+    <!-- 2. MAIN SPLIT SYSTEM -->
+    <div class="main-split">
+      <div class="hero-container">
+        <main class="hero">
+          <h1 id="hero-headline">
+            <span class="h1-line-wrapper"><span class="h1-line">Digital Growth</span></span>
+            <span class="h1-line-wrapper"><span class="h1-line">Infrastructure</span></span>
+            <span class="h1-line-wrapper"><span class="h1-line">Engineering</span></span>
+          </h1>
+
+          <div class="subtitle-block">
+            <p class="subtitle">We engineer high-performance digital systems for local businesses and startups.</p>
+            <p class="subtitle" style="margin-top: 18px;">Our platform is currently under active engineering.</p>
+          </div>
+
+          <!-- Refined proximity tracking action element -->
+          <a href="#" class="cta magnet-target" id="magnetic-cta">
+            <span class="btn-specular"></span>
+            <span class="btn-content" id="btn-parallax-content">
+              Book Strategy Call
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </a>
+        </main>
+      </div>
+
+      <!-- PREMIUM INTERACTIVE TELEMETRY CONSOLE -->
+      <div class="console-wrapper" id="telemetry-wrapper">
+        <div class="console-container" id="telemetry-console">
+          <div class="console-grid-watermark"></div>
+
+          <div class="console-bar">
+            <div class="console-controls">
+              <div class="control-dot"></div>
+              <div class="control-dot"></div>
+              <div class="control-dot"></div>
+            </div>
+            <div class="console-tabs">
+              <button class="console-tab active" id="tab-config">
+                <svg viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M5.18 4.616a.5.5 0 0 1 .704.064L8 7.293l2.116-2.613a.5.5 0 1 1 .768.64L8.435 8l2.45 3.03a.5.5 0 1 1-.769.64L8 9.058l-2.116 2.612a.5.5 0 1 1-.768-.64L7.565 8 5.116 4.97a.5.5 0 0 1 .064-.704z"/>
+                  <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0V1H4v13h8V4.5h-1z"/>
+                </svg>
+                avexra.config.json
+              </button>
+              
+              <button class="console-tab" id="tab-deploy">
+                <svg viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M4.854 4.854a.5.5 0 1 0-.708-.708L1.707 6.5l2.439 2.439a.5.5 0 1 0 .708-.708L2.707 6.5l2.147-2.146zm6.292 0a.5.5 0 1 1 .708-.708L14.293 6.5l-2.439 2.439a.5.5 0 1 1-.708-.708L13.293 6.5l-2.147-2.146z"/>
+                  <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0V1H4v13h8V4.5h-1z"/>
+                </svg>
+                infrastructure.sh
+              </button>
+              
+              <button class="console-tab" id="tab-telemetry">
+                <svg viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M3 10.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
+                  <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0V1H4v13h8V4.5h-1z"/>
+                </svg>
+                telemetry.log
+              </button>
+            </div>
+            <div class="console-status"><div class="light"></div>AVX_NODE_I</div>
+          </div>
+          
+          <div class="console-body" id="console-body">
+            <!-- Dynamic compilation outputs stream here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. UNIFIED BASELINE & METADATA FOOTER (Structured Bottom Grid Element) -->
+    <footer class="footer-system">
+      <div class="plot-horizon">
+        <div class="plot-node-left"></div>
+      </div>
+      <div class="footer">
+        <div class="footer-left">
+          <a href="mailto:hello@avexra.digital" class="magnet-target">hello@avexra.digital</a>
+          <span class="sep">&#9679;</span>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="magnet-target">LinkedIn</a>
+          <span class="sep">&#9679;</span>
+          <span>&copy; 2026 Avexra Digital</span>
+        </div>
+        <div class="footer-right">
+          <span>FOUNDATION RELEASE</span>
+          <span class="v">V0.1</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const body = document.body;
+      const consoleWrapper = document.getElementById('telemetry-wrapper');
+      const consoleBody = document.getElementById('console-body');
+      
+      const tabConfig = document.getElementById('tab-config');
+      const tabDeploy = document.getElementById('tab-deploy');
+      const tabTelemetry = document.getElementById('tab-telemetry');
+
+      const cursorDot = document.getElementById('cursor-dot');
+      const cursorRing = document.getElementById('cursor-ring');
+      const magneticCta = document.getElementById('magnetic-cta');
+      const btnParallaxContent = document.getElementById('btn-parallax-content');
+
+      const contextMenu = document.getElementById('context-menu');
+      const toast = document.getElementById('toast');
+
+      // Preloader Dom Selectors
+      const preloader = document.getElementById('avexra-preloader');
+      const loaderBar = document.getElementById('loader-bar');
+      const loaderPct = document.getElementById('loader-pct');
+      const loaderLog = document.getElementById('loader-log');
+
+      let mouseX = 0, mouseY = 0;
+      let ringX = 0, ringY = 0;
+      let lastMouseX = 0, lastMouseY = 0;
+      let mouseVelocity = 0;
+      
+      let activeTab = 'config';
+      let telemetryInterval = null;
+
+      // Magnetic parameters
+      let isMagneticActive = false;
+      let targetBounds = null;
+      let isCtaHovered = false;
+
+      // PRELOADER TELEMETRY LEDGER ARRAY
+      const preloaderLogs = [
+        "SYS // Initializing core...",
+        "INFRA // Synchronizing edge...",
+        "DOM // Processing assets...",
+        "CRO // Optimizing vitals...",
+        "CORE // Deploying payloads..."
+      ];
+
+      let progress = 0;
+      const loadingDuration = 750; // Optimized lightning-fast runtime parameter (750ms total)
+      const intervalTick = 15;
+      const totalSteps = loadingDuration / intervalTick;
+      const increment = 100 / totalSteps;
+
+      const preloaderInterval = setInterval(() => {
+        progress += increment;
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(preloaderInterval);
+          
+          loaderBar.style.width = '100%';
+          loaderPct.textContent = '100%';
+          loaderLog.textContent = "READY // Spawning master viewport frame...";
+
+          setTimeout(() => {
+            preloader.style.transform = 'translateY(-100%)';
+            preloader.style.opacity = '0';
+            body.classList.add('site-ready');
+
+            setTimeout(() => {
+              if (window.innerWidth > 1120) {
+                cursorDot.style.opacity = '1';
+                cursorRing.style.opacity = '1';
+              }
+            }, 300);
+          }, 200);
+        } else {
+          loaderBar.style.width = `${progress}%`;
+          loaderPct.textContent = `${Math.floor(progress).toString().padStart(3, '0')}%`;
+          
+          const logIndex = Math.floor((progress / 100) * preloaderLogs.length);
+          loaderLog.textContent = preloaderLogs[Math.min(logIndex, preloaderLogs.length - 1)];
+        }
+      }, intervalTick);
+
+      // 1. DAMPED LERP PHYSICS LOOP FOR CUSTOM SELECTOR
+      function runCursorPhysics() {
+        if (window.innerWidth > 1120) {
+          const dx = mouseX - lastMouseX;
+          const dy = mouseY - lastMouseY;
+          mouseVelocity = Math.sqrt(dx * dx + dy * dy);
+          lastMouseX = mouseX;
+          lastMouseY = mouseY;
+
+          if (isMagneticActive && targetBounds) {
+            const targetX = targetBounds.left + targetBounds.width / 2;
+            const targetY = targetBounds.top + targetBounds.height / 2;
+            
+            ringX += (targetX - ringX) * 0.22;
+            ringY += (targetY - ringY) * 0.22;
+
+            cursorRing.style.width = `${targetBounds.width + 12}px`;
+            cursorRing.style.height = `${targetBounds.height + 12}px`;
+            cursorRing.style.borderRadius = '6px';
+          } else {
+            const deltaX = mouseX - ringX;
+            const deltaY = mouseY - ringY;
+            ringX += deltaX * 0.15;
+            ringY += deltaY * 0.15;
+
+            cursorRing.style.width = '32px';
+            cursorRing.style.height = '32px';
+            cursorRing.style.borderRadius = '50%';
+          }
+
+          cursorRing.style.left = `${ringX}px`;
+          cursorRing.style.top = `${ringY}px`;
+          
+          cursorDot.style.left = `${mouseX}px`;
+          cursorDot.style.top = `${mouseY}px`;
+        }
+        requestAnimationFrame(runCursorPhysics);
+      }
+      requestAnimationFrame(runCursorPhysics);
+
+      // 2. LIVE COORDINATE PARALLAX INTERACTION PROCESSING
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        if (window.innerWidth > 1120) {
+          const skewX = -((e.clientY - (window.innerHeight / 2)) / (window.innerHeight / 2)) * 3.5;
+          const skewY = ((e.clientX - (window.innerWidth / 2)) / (window.innerWidth / 2)) * 3.5;
+          consoleWrapper.style.transform = `perspective(1200px) rotateX(${skewX}deg) rotateY(${skewY}deg)`;
+
+          const btnRect = magneticCta.getBoundingClientRect();
+          const internalBtnX = e.clientX - btnRect.left;
+          const internalBtnY = e.clientY - btnRect.top;
+          magneticCta.style.setProperty('--b-mx', `${internalBtnX}px`);
+          magneticCta.style.setProperty('--b-my', `${internalBtnY}px`);
+
+          if (isCtaHovered) {
+            const shiftX = (internalBtnX - btnRect.width / 2) * 0.14;
+            const shiftY = (internalBtnY - btnRect.height / 2) * 0.14;
+            btnParallaxContent.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 15px)`;
+          }
+        }
+      });
+
+      window.addEventListener('mouseleave', () => {
+        consoleWrapper.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg)`;
+      });
+
+      const magnets = document.querySelectorAll('.magnet-target, .console-tab');
+      magnets.forEach(target => {
+        target.addEventListener('mouseenter', () => {
+          isMagneticActive = true;
+          targetBounds = target.getBoundingClientRect();
+          body.classList.add('cursor-magnetic');
+        });
+        target.addEventListener('mouseleave', () => {
+          isMagneticActive = false;
+          targetBounds = null;
+          body.classList.remove('cursor-magnetic');
+        });
+      });
+
+      magneticCta.addEventListener('mouseenter', () => {
+        isCtaHovered = true;
+      });
+      magneticCta.addEventListener('mouseleave', () => {
+        isCtaHovered = false;
+        btnParallaxContent.style.transform = `translate3d(0px, 0px, 0px)`;
+      });
+
+      // 3. CONSOLE MODULE FILE COMPILER
+      const files = {
+        config: `<span class="c-bracket">{</span>\n  <span class="c-key">"agency"</span>: <span class="c-string">"Avexra Digital"</span>,\n  <span class="c-key">"engineering_standard"</span>: <span class="c-string">"High-Performance"</span>,\n  <span class="c-key">"outcomes"</span>: <span class="c-bracket">[</span>\n    <span class="c-string">"Local Search Dominance [SEO]"</span>,\n    <span class="c-string">"Frictionless Conversion [CRO]"</span>,\n    <span class="c-string">"Sub-second Native Load Speed"</span>\n  <span class="c-bracket">]</span>,\n  <span class="c-key">"infrastructure"</span>: <span class="c-bracket">{</span>\n    <span class="c-key">"framework"</span>: <span class="c-string">"Next.js / TypeScript"</span>,\n    <span class="c-key">"lighthouse"</span>: <span class="c-value">"100/100 Core Vitals"</span>\n  <span class="c-bracket">}</span>\n<span class="c-bracket">}</span>`,
+        deploy: `<span class="c-prompt">$</span> npx avexra --deploy --production\n<span class="c-string">[INFRA] Running compilation matrix...</span>\n✔ Analyzing semantic DOM footprint [done]\n✔ Minifying hydration payloads [done]\n✔ Deferring non-critical scripts [done]\n✔ Core Web Vitals configuration optimized\n<span class="c-success">[SUCCESS] Build deployed in 12ms to edge.</span>`,
+        telemetry: `<span class="c-prompt">$</span> cat telemetry.log\n<span class="c-string">[SYS] Core active. Initiating real-time coordinate logging...</span>\n<div class="telemetry-stream" id="tel-stream"></div>`
+      };
+
+      function renderFile(key) {
+        activeTab = key;
+        clearInterval(telemetryInterval);
+        
+        document.querySelectorAll('.console-tab').forEach(tab => tab.classList.remove('active'));
+        document.getElementById(`tab-${key}`).classList.add('active');
+        
+        consoleBody.innerHTML = files[key];
+
+        if (key === 'telemetry') {
+          const stream = document.getElementById('tel-stream');
+          telemetryInterval = setInterval(() => {
+            if (stream) {
+              const logItem = document.createElement('div');
+              logItem.className = 'telemetry-log-item';
+              
+              const angle = (Math.atan2((window.innerHeight/2) - mouseY, mouseX - (window.innerWidth/2)) * (180 / Math.PI)).toFixed(1);
+              const velHz = (mouseVelocity * 60).toFixed(0);
+              
+              logItem.innerHTML = `<span class="c-prompt">[OK]</span> VECTOR: X:<span class="c-value">${mouseX}</span> Y:<span class="c-value">${mouseY}</span> // <span class="c-key">FREQ</span>: ${velHz}Hz // <span class="c-key">ANGLE</span>: ${angle}°`;
+              stream.appendChild(logItem);
+
+              while (stream.childNodes.length > 7) {
+                stream.removeChild(stream.firstChild);
+              }
+              consoleBody.scrollTop = consoleBody.scrollHeight;
+            }
+          }, 120);
+        }
+      }
+
+      tabConfig.addEventListener('click', () => renderFile('config'));
+      tabDeploy.addEventListener('click', () => renderFile('deploy'));
+      tabTelemetry.addEventListener('click', () => renderFile('telemetry'));
+
+      renderFile('config');
+
+      // 4. BESPOKE SYSTEM DEFAULT CONTEXT MENU TRANSITION INTERFACE
+      window.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+
+        const menuWidth = 240;
+        const menuHeight = 220;
+        
+        let posX = e.clientX;
+        let posY = e.clientY;
+
+        if (posX + menuWidth > window.innerWidth) posX = window.innerWidth - menuWidth - 10;
+        if (posY + menuHeight > window.innerHeight) posY = window.innerHeight - menuHeight - 10;
+
+        contextMenu.style.left = `${posX}px`;
+        contextMenu.style.top = `${posY}px`;
+        contextMenu.style.display = 'block';
+      });
+
+      window.addEventListener('click', (e) => {
+        if (!contextMenu.contains(e.target)) {
+          contextMenu.style.display = 'none';
+        }
+      });
+
+      document.getElementById('context-back').addEventListener('click', () => {
+        contextMenu.style.display = 'none';
+        triggerToast('[SYSTEM] Executing history back sequence.');
+        setTimeout(() => window.history.back(), 500);
+      });
+
+      document.getElementById('context-forward').addEventListener('click', () => {
+        contextMenu.style.display = 'none';
+        triggerToast('[SYSTEM] Executing history forward sequence.');
+        setTimeout(() => window.history.forward(), 500);
+      });
+
+      document.getElementById('context-reload').addEventListener('click', () => {
+        contextMenu.style.display = 'none';
+        triggerToast('[SYSTEM] Reloading frame coordinates...');
+        setTimeout(() => window.location.reload(), 600);
+      });
+
+      document.getElementById('context-save').addEventListener('click', () => {
+        contextMenu.style.display = 'none';
+        triggerToast('[SYSTEM] Compiling complete webpage asset offline...');
+        setTimeout(() => {
+          const rawMarkup = document.documentElement.outerHTML;
+          const blob = new Blob([rawMarkup], { type: 'text/html' });
+          const dynamicLink = document.createElement('a');
+          dynamicLink.href = URL.createObjectURL(blob);
+          dynamicLink.download = 'avexra-digital.html';
+          document.body.appendChild(dynamicLink);
+          dynamicLink.click();
+          document.body.removeChild(dynamicLink);
+        }, 800);
+      });
+
+      document.getElementById('context-print').addEventListener('click', () => {
+        contextMenu.style.display = 'none';
+        triggerToast('[SYSTEM] Mapping document print properties...');
+        setTimeout(() => window.print(), 800);
+      });
+
+      document.getElementById('context-source').addEventListener('click', () => {
+        contextMenu.style.display = 'none';
+        triggerToast('[SYSTEM] Opening view-source directory channel...');
+        setTimeout(() => {
+          window.open('view-source:' + window.location.href, '_blank');
+        }, 600);
+      });
+
+      document.getElementById('context-inspect').addEventListener('click', () => {
+        contextMenu.style.display = 'none';
+        triggerToast('[SYSTEM] Initializing developer console layout...');
+        console.log('[Avexra] Inspect requested. Please press ⌥⌘I or F12 on standard hardware keyboards.');
+      });
+
+      function triggerToast(message) {
+        toast.textContent = message;
+        toast.classList.add('active');
+        setTimeout(() => {
+          toast.classList.remove('active');
+        }, 3200);
+      }
+    });
+  </script>
+</body>
+</html>
