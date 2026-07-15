@@ -3,7 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- CORE SEO META STACK -->
 <title>Avexra Digital — Growth Infrastructure Engineering</title>
+<meta name="description" content="We engineer high-performance digital growth infrastructure, speed-optimized platforms, and conversion systems for local businesses and elite startups. Built for sub-second native performance.">
+<meta name="keywords" content="Growth Engineering, Digital Infrastructure, Next.js, Conversion Rate Optimization, Local SEO Dominance, Web Speed Optimization, Avexra, Avexra Digital">
+<meta name="author" content="Avexra Digital">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://avexradigital.com/">
+
+<!-- OPEN GRAPH / FACEBOOK MATRIX -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://avexradigital.com/">
+<meta property="og:title" content="Avexra Digital — Growth Infrastructure Engineering">
+<meta property="og:description" content="High-performance digital growth infrastructure and speed-optimized systems engineered for sub-second native loading and frictionless conversions.">
+<meta property="og:image" content="https://avexradigital.com/assets/og-share-card.png">
+<meta property="og:site_name" content="Avexra Digital">
+
+<!-- TWITTER CARDS METADATA -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://avexradigital.com/">
+<meta name="twitter:title" content="Avexra Digital — Growth Infrastructure Engineering">
+<meta name="twitter:description" content="High-performance digital growth infrastructure and speed-optimized systems engineered for sub-second native loading and frictionless conversions.">
+<meta name="twitter:image" content="https://avexradigital.com/assets/og-share-card.png">
+
+<link rel="icon" type="image/x-icon" href="./favicon.ico">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -435,8 +460,17 @@
     box-shadow: 0 32px 80px rgba(0, 0, 0, 0.65);
     opacity: 0;
     transform: scale(0.98) translate3d(20px, 0, 0);
-    transition: transform 1s var(--transition-curve), opacity 1s var(--transition-curve);
+    transform-style: preserve-3d;
+    
+    /* Pure spring return ease handles matrix calculations safely */
+    transition: transform 0.6s var(--transition-curve), opacity 1s var(--transition-curve);
   }
+
+  /* Active tracking loop accelerator */
+  .console-wrapper.active-tilt {
+    transition: transform 0.08s linear !important; 
+  }
+
   body.site-ready .console-wrapper {
     opacity: 1;
     transform: scale(1) translate3d(0, 0, 0);
@@ -637,6 +671,7 @@
     position: relative;
     z-index: 10;
     flex-shrink: 0;
+    flex-wrap: wrap
   }
 
   .plot-horizon {
@@ -675,6 +710,7 @@
     font-size: 12px;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.22);
+    flex-wrap: wrap;
   }
   
   .footer-left a {
@@ -719,7 +755,7 @@
     min-width: 240px;
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8);
     z-index: 100001;
-    display: none;
+    display: none !important; /* Strict hidden default state completely shields leakage bugs on page boot */
     pointer-events: auto;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     user-select: none;
@@ -788,41 +824,56 @@
   /* RIGOROUS MOBILE BREAKPOINT MEDIA ARCHITECTURE */
   @media (max-width: 1120px) {
     body {
-      cursor: auto !important; /* Restore standard system pointer for capacitive screens */
+      cursor: auto !important; 
+      overflow: hidden !important; /* Strict universal mobile layout screen-lock */
+      height: 100vh;
+      height: 100dvh;
     }
     .cursor-dot, .cursor-ring {
-      display: none !important; /* Strip custom cursor markup on mobile layout viewports */
+      display: none !important; 
     }
     .wrap {
-      grid-template-rows: auto auto auto;
+      grid-template-rows: auto 1fr auto;
       padding-left: 6%;
       padding-right: 6%;
+      height: 100dvh;
     }
     .main-split {
       flex-direction: column;
       align-items: flex-start;
-      gap: 56px;
-      padding: 48px 0;
+      justify-content: center;
+      gap: 3dvh; /* Viewport based spacing rhythm metrics prevent panel clipping overflows */
+      padding: 0;
+      flex: 1;
+      min-height: 0;
     }
     .hero-container, .console-wrapper {
       width: 100%;
       max-width: 100%;
     }
-    .console-wrapper {
-      transform: scale(0.98) translate3d(0, 16px, 0);
+    .hero-container {
+      flex: 0 0 auto;
     }
-    body.site-ready .console-wrapper {
-      transform: scale(1) translate3d(0, 0, 0);
+    .console-wrapper {
+      flex: 0 0 auto;
+      height: 28dvh; /* Strict scaling ceiling locks mobile space precisely */
+      transform: none !important;
     }
     .console-container {
-      height: 380px;
+      height: 100%;
     }
-    .plot-horizon {
-      display: none;
+    .console-tabs {
+      width: 100%;
+      gap: 1px;
     }
-    .footer {
-      padding-top: 32px;
-      padding-bottom: 24px;
+    .console-tab {
+      flex: 1;
+      justify-content: center;
+      font-size: 10px;
+      padding: 0 4px 10px 4px;
+    }
+    .console-tab svg, .console-status {
+      display: none; 
     }
     .h1-line-wrapper {
       overflow: visible !important;
@@ -835,6 +886,17 @@
       -webkit-text-fill-color: initial !important;
       color: var(--text-primary) !important;
     }
+    .subtitle-block, .cta {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .plot-horizon {
+      display: none;
+    }
+    .footer {
+      padding-top: 2vh;
+      padding-bottom: 3vh;
+    }
   }
 
   @media (max-width: 768px) {
@@ -842,14 +904,55 @@
       padding-left: 5%;
       padding-right: 5%;
     }
-    .header-system { padding-top: 36px; }
-    h1 { font-size: clamp(34px, 10vw, 52px); letter-spacing: -0.04em; line-height: 1.05; }
-    .subtitle-block { margin-top: 32px; opacity: 1 !important; transform: none !important; }
-    .cta { margin-top: 36px; padding: 14px 28px; width: 100%; justify-content: center; opacity: 1 !important; transform: none !important; }
-    .footer { 
-      flex-direction: column; 
-      align-items: flex-start; 
-      gap: 20px;
+    .header-system { padding-top: 3vh; }
+    h1 { font-size: clamp(28px, 9.5vw, 44px); letter-spacing: -0.04em; line-height: 1.06; }
+    .subtitle-block { margin-top: 1.5dvh; }
+    .subtitle { font-size: 14.5px; line-height: 1.55; }
+    .subtitle-block .subtitle + .subtitle { margin-top: 6px; }
+    
+    .cta {
+      margin-top: 2.5dvh;
+      padding: 13px 24px;
+      width: 100%;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .cta:active {
+      transform: scale(0.96) !important;
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--accent-bright);
+    }
+    .cta svg { transform: none !important; }
+    
+    .console-bar { height: 42px; padding: 0 10px; }
+    .console-body { padding: 14px; font-size: 11px; }
+    .footer { flex-direction: column; align-items: flex-start; gap: 12px; }
+  }
+
+  @media (max-width: 420px) {
+
+    
+    #tab-deploy, #tab-telemetry {
+      display: none;
+    }
+
+
+
+  }
+
+  @media (max-width: 300px) {
+
+    
+    .nav-coordinates {
+      display: none;
+    }
+    
+    .console-wrapper {
+      display: none;
     }
   }
 
@@ -872,7 +975,7 @@
 </head>
 <body>
 
-  <!-- HIGH FIDELITY SYSTEM INITIALIZATION PRELOADER (Adaptive Mobile Scale) -->
+  <!-- UNIVERSAL HIGH-SPEED ADAPTIVE PRELOADER -->
   <div id="avexra-preloader">
     <div class="loader-centerpiece">
       <div class="loader-brand">AVEXRA<span class="dot"></span></div>
@@ -921,7 +1024,7 @@
   </div>
 
   <div class="wrap" id="scene">
-    <!-- 1. HEADER (Top Grid Alignment block) -->
+    <!-- 1. HEADER -->
     <header class="header-system">
       <a href="/" class="logo magnet-target">AVEXRA<span class="dot"></span></a>
       <div class="nav-coordinates">41.0082° N, 28.9784° E</div>
@@ -942,7 +1045,7 @@
             <p class="subtitle" style="margin-top: 18px;">Our platform is currently under active engineering.</p>
           </div>
 
-          <!-- Refined proximity tracking action element -->
+          <!-- Action element -->
           <a href="#" class="cta magnet-target" id="magnetic-cta">
             <span class="btn-specular"></span>
             <span class="btn-content" id="btn-parallax-content">
@@ -978,7 +1081,7 @@
               
               <button class="console-tab" id="tab-deploy">
                 <svg viewBox="0 0 16 16" fill="currentColor">
-                  <path d="M4.854 4.854a.5.5 0 1 0-.708-.708L1.707 6.5l2.439 2.439a.5.5 0 1 0 .708-.708L2.707 6.5l2.147-2.146zm6.292 0a.5.5 0 1 1 .708-.708L14.293 6.5l-2.439 2.439a.5.5 0 1 1-.708-.708L13.293 6.5l-2.147-2.146z"/>
+                  <path d="M4.854 4.854a.5.5 0 1 0-.708-.708L1.707 6.5l2.439 2.439a.5.5 0 1 0 .708-.708L2.707 6.5l-2.147-2.146zm6.292 0a.5.5 0 1 1 .708-.708L14.293 6.5l-2.439 2.439a.5.5 0 1 1-.708-.708L13.293 6.5l-2.147-2.146z"/>
                   <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0V1H4v13h8V4.5h-1z"/>
                 </svg>
                 infrastructure.sh
@@ -1002,7 +1105,7 @@
       </div>
     </div>
 
-    <!-- 3. UNIFIED BASELINE & METADATA FOOTER (Structured Bottom Grid Element) -->
+    <!-- 3. UNIFIED BASELINE & METADATA FOOTER -->
     <footer class="footer-system">
       <div class="plot-horizon">
         <div class="plot-node-left"></div>
@@ -1060,7 +1163,7 @@
       let targetBounds = null;
       let isCtaHovered = false;
 
-      // PRELOADER TELEMETRY LEDGER ARRAY
+      // PRELOADER LEDGER SEQUENCE
       const preloaderLogs = [
         "SYS // Initializing core...",
         "INFRA // Synchronizing edge...",
@@ -1070,7 +1173,7 @@
       ];
 
       let progress = 0;
-      const loadingDuration = 750; // Optimized lightning-fast runtime parameter (750ms total)
+      const loadingDuration = 750; 
       const intervalTick = 15;
       const totalSteps = loadingDuration / intervalTick;
       const increment = 100 / totalSteps;
@@ -1152,10 +1255,12 @@
         mouseY = e.clientY;
 
         if (window.innerWidth > 1120) {
-          const skewX = -((e.clientY - (window.innerHeight / 2)) / (window.innerHeight / 2)) * 3.5;
-          const skewY = ((e.clientX - (window.innerWidth / 2)) / (window.innerWidth / 2)) * 3.5;
+          // Continuous 3D Perspective spatial tracking formulas
+          const skewX = -((e.clientY - (window.innerHeight / 2)) / (window.innerHeight / 2)) * 4.5;
+          const skewY = ((e.clientX - (window.innerWidth / 2)) / (window.innerWidth / 2)) * 4.5;
           consoleWrapper.style.transform = `perspective(1200px) rotateX(${skewX}deg) rotateY(${skewY}deg)`;
 
+          // Custom 3D specularity limits mapping inside the CTA wrapper bounding box
           const btnRect = magneticCta.getBoundingClientRect();
           const internalBtnX = e.clientX - btnRect.left;
           const internalBtnY = e.clientY - btnRect.top;
@@ -1170,7 +1275,14 @@
         }
       });
 
-      window.addEventListener('mouseleave', () => {
+      // Manage continuous linear acceleration clashes cleanly
+      consoleWrapper.addEventListener('mouseenter', () => {
+        if (window.innerWidth > 1121) {
+          consoleWrapper.classList.add('active-tilt');
+        }
+      });
+      consoleWrapper.addEventListener('mouseleave', () => {
+        consoleWrapper.classList.remove('active-tilt');
         consoleWrapper.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg)`;
       });
 
@@ -1242,6 +1354,12 @@
 
       // 4. BESPOKE SYSTEM DEFAULT CONTEXT MENU TRANSITION INTERFACE
       window.addEventListener('contextmenu', (e) => {
+        // DEVELOPER PASS-THROUGH HOOK: If user holds Shift, bypass entirely to allow native platform inspect panels
+        if (e.shiftKey) {
+          contextMenu.style.setProperty('display', 'none', 'important');
+          return;
+        }
+
         e.preventDefault();
 
         const menuWidth = 240;
@@ -1255,35 +1373,35 @@
 
         contextMenu.style.left = `${posX}px`;
         contextMenu.style.top = `${posY}px`;
-        contextMenu.style.display = 'block';
+        contextMenu.style.setProperty('display', 'block', 'important'); // Safe override of standard hiding rule
       });
 
       window.addEventListener('click', (e) => {
         if (!contextMenu.contains(e.target)) {
-          contextMenu.style.display = 'none';
+          contextMenu.style.setProperty('display', 'none', 'important');
         }
       });
 
       document.getElementById('context-back').addEventListener('click', () => {
-        contextMenu.style.display = 'none';
+        contextMenu.style.setProperty('display', 'none', 'important');
         triggerToast('[SYSTEM] Executing history back sequence.');
-        setTimeout(() => window.history.back(), 500);
+        setTimeout(() => window.history.back(), 300);
       });
 
       document.getElementById('context-forward').addEventListener('click', () => {
-        contextMenu.style.display = 'none';
+        contextMenu.style.setProperty('display', 'none', 'important');
         triggerToast('[SYSTEM] Executing history forward sequence.');
-        setTimeout(() => window.history.forward(), 500);
+        setTimeout(() => window.history.forward(), 300);
       });
 
       document.getElementById('context-reload').addEventListener('click', () => {
-        contextMenu.style.display = 'none';
+        contextMenu.style.setProperty('display', 'none', 'important');
         triggerToast('[SYSTEM] Reloading frame coordinates...');
-        setTimeout(() => window.location.reload(), 600);
+        setTimeout(() => window.location.reload(), 300);
       });
 
       document.getElementById('context-save').addEventListener('click', () => {
-        contextMenu.style.display = 'none';
+        contextMenu.style.setProperty('display', 'none', 'important');
         triggerToast('[SYSTEM] Compiling complete webpage asset offline...');
         setTimeout(() => {
           const rawMarkup = document.documentElement.outerHTML;
@@ -1294,27 +1412,23 @@
           document.body.appendChild(dynamicLink);
           dynamicLink.click();
           document.body.removeChild(dynamicLink);
-        }, 800);
+        }, 500);
       });
 
       document.getElementById('context-print').addEventListener('click', () => {
-        contextMenu.style.display = 'none';
+        contextMenu.style.setProperty('display', 'none', 'important');
         triggerToast('[SYSTEM] Mapping document print properties...');
-        setTimeout(() => window.print(), 800);
+        setTimeout(() => window.print(), 300);
       });
 
       document.getElementById('context-source').addEventListener('click', () => {
-        contextMenu.style.display = 'none';
-        triggerToast('[SYSTEM] Opening view-source directory channel...');
-        setTimeout(() => {
-          window.open('view-source:' + window.location.href, '_blank');
-        }, 600);
+        contextMenu.style.setProperty('display', 'none', 'important');
+        triggerToast('[SYSTEM] Native source channel unlocked. Press Shift + Right Click.');
       });
 
       document.getElementById('context-inspect').addEventListener('click', () => {
-        contextMenu.style.display = 'none';
-        triggerToast('[SYSTEM] Initializing developer console layout...');
-        console.log('[Avexra] Inspect requested. Please press ⌥⌘I or F12 on standard hardware keyboards.');
+        contextMenu.style.setProperty('display', 'none', 'important');
+        triggerToast('[SYSTEM] Native inspection unlocked. Press Shift + Right Click.');
       });
 
       function triggerToast(message) {
