@@ -120,7 +120,10 @@
     align-items: center;
     gap: 20px;
     width: 100%;
-    max-width: 320px;
+    max-width: 340px;
+    position: relative;
+    min-height: 160px;
+    justify-content: center;
   }
 
   .loader-brand {
@@ -177,6 +180,137 @@
     max-width: 80%;
   }
 
+  /* PREMIUM PRELOADER INTERACTION STYLES */
+  .loader-stats-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: opacity 0.35s ease, transform 0.35s var(--transition-curve);
+  }
+  
+  .loader-stats-wrapper.hidden {
+    opacity: 0;
+    transform: translateY(-12px);
+    pointer-events: none;
+  }
+
+  .preloader-btn-wrapper {
+    position: absolute;
+    width: 100%;
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s var(--transition-curve);
+    top: 90px;
+  }
+
+  .preloader-btn-wrapper.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .preloader-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-primary);
+    font-family: 'Geist', 'Inter', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    padding: 16px 32px;
+    border-radius: 4px;
+    cursor: none;
+    width: 100%;
+    text-transform: uppercase;
+    outline: none;
+    position: relative;
+    overflow: visible;
+    z-index: 1;
+    transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+  }
+
+  /* ADVANCED DUAL-STAGGERED SONAR RADAR EMISSIONS */
+  .preloader-btn::before,
+  .preloader-btn::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border: 1px solid rgba(88, 112, 224, 0);
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+    transform: scale(1);
+  }
+
+  .preloader-btn-wrapper.active .preloader-btn::before {
+    animation: advancedSonar 2.8s infinite cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .preloader-btn-wrapper.active .preloader-btn::after {
+    animation: advancedSonar 2.8s infinite cubic-bezier(0.16, 1, 0.3, 1);
+    animation-delay: 1.4s;
+  }
+
+  @keyframes advancedSonar {
+    0% {
+      transform: scaleX(1) scaleY(1);
+      box-shadow: 0 0 0px rgba(88, 112, 224, 0);
+      opacity: 0.8;
+      border-color: rgba(88, 112, 224, 0.5);
+    }
+    40% {
+      box-shadow: 0 0 16px rgba(88, 112, 224, 0.2);
+    }
+    100% {
+      transform: scaleX(1.25) scaleY(1.85);
+      box-shadow: 0 0 32px rgba(88, 112, 224, 0);
+      opacity: 0;
+      border-color: rgba(88, 112, 224, 0);
+    }
+  }
+
+  .preloader-btn-wrapper.active .preloader-btn {
+    animation: operationalPulseGlow 2.5s infinite ease-in-out;
+  }
+
+  .preloader-btn:hover {
+    border-color: var(--accent-bright) !important;
+    background: rgba(88, 112, 224, 0.06) !important;
+    color: #ffffff;
+    box-shadow: 0 0 24px rgba(88, 112, 224, 0.25) !important;
+    animation-play-state: paused;
+  }
+
+  .preloader-subtext {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: var(--text-secondary);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    user-select: none;
+    opacity: 0.65;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .preloader-subtext::after {
+    content: '_';
+    color: var(--accent-bright);
+    animation: terminalCaretBlink 0.9s infinite steps(2);
+  }
+
   /* PREMIUM CUSTOM HYBRID CURSOR */
   .cursor-dot {
     width: 6px;
@@ -186,7 +320,7 @@
     position: fixed;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    z-index: 100000;
+    z-index: 300000;
     transition: 
       width 0.2s var(--transition-curve), 
       height 0.2s var(--transition-curve), 
@@ -203,7 +337,7 @@
     position: fixed;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    z-index: 99999;
+    z-index: 299999;
     transform-origin: center;
     transition: 
       border-color 0.3s var(--transition-curve), 
@@ -300,7 +434,7 @@
   /* IMMACULATE CALIBRATED FLUID TYPOGRAPHY */
   h1 {
     font-family: 'Geist', 'Inter', sans-serif;
-    font-size: clamp(36px, 5.8vw, 98px); /* Lowered minimum threshold prevents mobile overflow */
+    font-size: clamp(36px, 5.8vw, 98px);
     line-height: 1.04;
     font-weight: 800;
     letter-spacing: -0.05em;
@@ -462,12 +596,9 @@
     opacity: 0;
     transform: scale(0.98) translate3d(20px, 0, 0);
     transform-style: preserve-3d;
-    
-    /* Pure spring return ease handles matrix calculations safely */
     transition: transform 0.6s var(--transition-curve), opacity 1s var(--transition-curve);
   }
 
-  /* Active tracking loop accelerator */
   .console-wrapper.active-tilt {
     transition: transform 0.08s linear !important; 
   }
@@ -756,7 +887,7 @@
     min-width: 240px;
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8);
     z-index: 100001;
-    display: none !important; /* Strict hidden default state completely shields leakage bugs on page boot */
+    display: none !important;
     pointer-events: auto;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     user-select: none;
@@ -823,37 +954,24 @@
   }
 
   @media (max-width: 1600px) {
-    h1 {
-      font-size: 5vw
-    }
+    h1 { font-size: 5vw; }
   }
 
   @media (max-width: 1350px) {
-    h1 {
-      font-size: clamp(28px, 9.5vw, 44px)
-    }
+    h1 { font-size: clamp(28px, 9.5vw, 44px); }
   }
 
   @media (max-width: 1024px) {
-        .main-split {
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-        }
-
-        .hero-container {
-      flex: 0 0 auto  !important
-    }
-  .console-wrapper {
-      flex: 0 0 auto !important;
-
+    .main-split { flex-direction: column; align-items: flex-start; justify-content: center; }
+    .hero-container { flex: 0 0 auto !important; }
+    .console-wrapper { flex: 0 0 auto !important; }
   }
-  }
+
   /* RIGOROUS MOBILE BREAKPOINT MEDIA ARCHITECTURE */
   @media (max-width: 1120px) {
     body {
       cursor: auto !important; 
-      overflow: hidden !important; /* Strict universal mobile layout screen-lock */
+      overflow: hidden !important; 
       height: 100vh;
       height: 100dvh;
     }
@@ -867,10 +985,7 @@
       height: 100dvh;
     }
     .main-split {
-      /* flex-direction: column;
-      align-items: flex-start;
-      justify-content: center; */
-      gap: 3dvh; /* Viewport based spacing rhythm metrics prevent panel clipping overflows */
+      gap: 3dvh; 
       padding: 0;
       flex: 1;
       min-height: 0;
@@ -879,33 +994,17 @@
       width: 100%;
       max-width: 100%;
     }
-    .hero-container {
-      flex: 0 0 50%
-    }
+    .hero-container { flex: 0 0 50%; }
     .console-wrapper {
       flex: 0 0 50%;
-      height: 28dvh; /* Strict scaling ceiling locks mobile space precisely */
+      height: 28dvh; 
       transform: none !important;
     }
-    .console-container {
-      height: 100%;
-    }
-    .console-tabs {
-      width: 100%;
-      gap: 1px;
-    }
-    .console-tab {
-      flex: 1;
-      justify-content: center;
-      font-size: 10px;
-      padding: 0 4px 10px 4px;
-    }
-    .console-tab svg, .console-status {
-      display: none; 
-    }
-    .h1-line-wrapper {
-      overflow: visible !important;
-    }
+    .console-container { height: 100%; }
+    .console-tabs { width: 100%; gap: 1px; }
+    .console-tab { flex: 1; justify-content: center; font-size: 10px; padding: 0 4px 10px 4px; }
+    .console-tab svg, .console-status { display: none; }
+    .h1-line-wrapper { overflow: visible !important; }
     .h1-line {
       transform: none !important;
       opacity: 1 !important;
@@ -914,24 +1013,13 @@
       -webkit-text-fill-color: initial !important;
       color: var(--text-primary) !important;
     }
-    .subtitle-block, .cta {
-      opacity: 1 !important;
-      transform: none !important;
-    }
-    .plot-horizon {
-      display: none;
-    }
-    .footer {
-      padding-top: 2vh;
-      padding-bottom: 3vh;
-    }
+    .subtitle-block, .cta { opacity: 1 !important; transform: none !important; }
+    .plot-horizon { display: none; }
+    .footer { padding-top: 2vh; padding-bottom: 3vh; }
   }
 
   @media (max-width: 768px) {
-    .wrap {
-      padding-left: 5%;
-      padding-right: 5%;
-    }
+    .wrap { padding-left: 5%; padding-right: 5%; }
     .header-system { padding-top: 3vh; }
     h1 { font-size: clamp(28px, 9.5vw, 44px); letter-spacing: -0.04em; line-height: 1.06; }
     .subtitle-block { margin-top: 1.5dvh; }
@@ -962,26 +1050,14 @@
   }
 
   @media (max-width: 420px) {
-
-    
-    #tab-deploy, #tab-telemetry {
-      display: none;
-    }
-
-
-
+    #tab-deploy, #tab-telemetry { display: none; }
+    .preloader-btn-wrapper { max-width: 280px; }
+    .preloader-btn { font-size: 10px; padding: 14px 24px; letter-spacing: 0.18em; }
   }
 
   @media (max-width: 300px) {
-
-    
-    .nav-coordinates {
-      display: none;
-    }
-    
-    .console-wrapper {
-      display: none;
-    }
+    .nav-coordinates { display: none; }
+    .console-wrapper { display: none; }
   }
 
   @keyframes menuFadeIn {
@@ -994,10 +1070,27 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* HARDWARE REVEAL TRANSITION ENGINE (SLIDES STABLY FROM LEFT) */
   @keyframes h1Entrance {
     0% { transform: translateX(-102%); opacity: 0; }
     100% { transform: translateX(0); opacity: 1; }
+  }
+
+  /* HARDWARE REVEAL TRANSITION ENGINE INTERACTION GLOWS */
+  @keyframes operationalPulseGlow {
+    0% { border-color: rgba(255, 255, 255, 0.12); box-shadow: 0 0 0px rgba(88, 112, 224, 0); }
+    50% { border-color: var(--accent-bright); box-shadow: 0 0 18px rgba(88, 112, 224, 0.15); }
+    100% { border-color: rgba(255, 255, 255, 0.12); box-shadow: 0 0 0px rgba(88, 112, 224, 0); }
+  }
+
+  @keyframes advancedSonar {
+    0% { transform: scaleX(1) scaleY(1); box-shadow: 0 0 0px rgba(88, 112, 224, 0); opacity: 0.8; border-color: rgba(88, 112, 224, 0.5); }
+    40% { box-shadow: 0 0 16px rgba(88, 112, 224, 0.2); }
+    100% { transform: scaleX(1.25) scaleY(1.85); box-shadow: 0 0 32px rgba(88, 112, 224, 0); opacity: 0; border-color: rgba(88, 112, 224, 0); }
+  }
+
+  @keyframes terminalCaretBlink {
+    from, to { opacity: 0; }
+    50% { opacity: 1; }
   }
 </style>
 </head>
@@ -1005,13 +1098,35 @@
 
   <!-- UNIVERSAL HIGH-SPEED ADAPTIVE PRELOADER -->
   <div id="avexra-preloader">
+    
+    <!-- HIGH-END METADATA HEADER GUIDANCE -->
+    <div class="preloader-header-grid" id="loader-header-banner" style="position: absolute; top: 40px; display: flex; justify-content: space-between; width: 100%; padding: 0 10%; font-family: 'Courier New', monospace; font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; opacity: 0; transition: opacity 0.5s ease; pointer-events: none; user-select: none;">
+      <span>AVX_CORE_V0.3 // SECURE CONNECTION</span>
+      <span id="preloader-audio-notice">SYSTEM AUDIO: STANDBY</span>
+    </div>
+
     <div class="loader-centerpiece">
       <div class="loader-brand">AVEXRA<span class="dot"></span></div>
-      <div class="loader-track"><div class="loader-bar" id="loader-bar"></div></div>
-      <div class="loader-metadata">
-        <span id="loader-log">SYS // Booting threads...</span>
-        <span id="loader-pct">000%</span>
+      
+      <!-- LOADING METRICS CONTAINER -->
+      <div class="loader-stats-wrapper" id="loader-stats">
+        <div class="loader-track"><div class="loader-bar" id="loader-bar"></div></div>
+        <div class="loader-metadata">
+          <span id="loader-log">SYS // Booting threads...</span>
+          <span id="loader-pct">000%</span>
+        </div>
       </div>
+
+      <!-- GLOWING SYSTEM INITIALIZE TRIGGERS -->
+      <div class="preloader-btn-wrapper" id="preloader-action">
+        <button class="preloader-btn" id="init-btn">Initialize Infrastructure</button>
+        <span class="preloader-subtext">OR CLICK ANYWHERE TO INITIALIZE</span>
+      </div>
+    </div>
+
+    <!-- HIGH-END METADATA FOOTER TRANSLATION GUIDE -->
+    <div id="preloader-footer-instruction" style="position: absolute; bottom: 40px; font-family: 'Courier New', monospace; font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; opacity: 0; transition: opacity 0.5s ease; text-transform: uppercase; pointer-events: none; user-select: none;">
+      [ Interacting binds spatial audio and runs interface engine ]
     </div>
   </div>
 
@@ -1160,7 +1275,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-58041NBZV7');
 </script>
 
@@ -1184,6 +1298,13 @@
 
       // Preloader Dom Selectors
       const preloader = document.getElementById('avexra-preloader');
+      const loaderHeader = document.getElementById('loader-header-banner');
+      const loaderFooter = document.getElementById('preloader-footer-instruction');
+      const audioNoticeStatus = document.getElementById('preloader-audio-notice');
+      const loaderStats = document.getElementById('loader-stats');
+      const preloaderAction = document.getElementById('preloader-action');
+      const initBtn = document.getElementById('init-btn');
+
       const loaderBar = document.getElementById('loader-bar');
       const loaderPct = document.getElementById('loader-pct');
       const loaderLog = document.getElementById('loader-log');
@@ -1200,6 +1321,55 @@
       let isMagneticActive = false;
       let targetBounds = null;
       let isCtaHovered = false;
+
+      // ==========================================================================
+      // PREMIUM AUDIO SYSTEM CONFIGURATION
+      // ==========================================================================
+      // 1. Loopable ambient background pad
+      const ambienceSound = new Audio('ambience.mp3');
+      ambienceSound.volume = 0.3; 
+      ambienceSound.loop = true;
+      ambienceSound.preload = 'auto';
+
+      // 2. Short, impactful hardware initialization transition sound effect
+      const introSound = new Audio('intro.ogg');
+      introSound.volume = 0.55; 
+      introSound.preload = 'auto';
+
+      // 3. LOCAL FILE HOVER AUDIO MOTOR
+      const uiHover = new Audio('hover.ogg');
+      uiHover.volume = 0.12; 
+      uiHover.preload = 'auto';
+
+      // 4. MASTER CLICK AUDIO ENGINE (v0.4 NEW ACTOR)
+      const uiClick = new Audio('click.ogg');
+      uiClick.volume = 0.38; 
+      uiClick.preload = 'auto';
+
+      let preloaderFinished = false;
+      let hasEntered = false;
+
+      // MASTER SITE ENTRANCE & AUDIO TRIGGER DISPATCHER
+      function enterSite() {
+        if (hasEntered) return;
+        hasEntered = true;
+
+        preloader.removeEventListener('click', enterSite);
+        window.removeEventListener('keydown', enterSite);
+
+        preloader.style.transform = 'translateY(-100%)';
+        preloader.style.opacity = '0';
+        body.classList.add('site-ready');
+
+        introSound.play().catch(e => console.log("[SYSTEM] Transition SFX play blocked:", e));
+        ambienceSound.play().catch(e => console.log("[SYSTEM] Audio loop play blocked:", e));
+      }
+
+      // Initialize premium cursors instantly for preloader interaction
+      if (window.innerWidth > 1120) {
+        cursorDot.style.opacity = '1';
+        cursorRing.style.opacity = '1';
+      }
 
       // PRELOADER LEDGER SEQUENCE
       const preloaderLogs = [
@@ -1227,17 +1397,33 @@
           loaderLog.textContent = "READY // Spawning master viewport frame...";
 
           setTimeout(() => {
-            preloader.style.transform = 'translateY(-100%)';
-            preloader.style.opacity = '0';
-            body.classList.add('site-ready');
+            // Swap loader stats out for custom interactive entry CTA
+            loaderStats.classList.add('hidden');
+            preloaderAction.classList.add('active');
 
-            setTimeout(() => {
-              if (window.innerWidth > 1120) {
-                cursorDot.style.opacity = '1';
-                cursorRing.style.opacity = '1';
-              }
-            }, 300);
-          }, 200);
+            // Reveal professional guidance metadata headers
+            loaderHeader.style.opacity = "0.5";
+            loaderFooter.style.opacity = "0.5";
+            audioNoticeStatus.textContent = "SYSTEM AUDIO: READY TO BIND";
+            audioNoticeStatus.style.color = "var(--accent-bright)";
+
+            // Set up TRIPLE-safe trigger interface: Full Screen Click + Button Click + Any Keypress
+            preloader.addEventListener('click', enterSite);
+            window.addEventListener('keydown', enterSite);
+            
+            // Add custom button to magnetic targets
+            const target = initBtn;
+            target.addEventListener('mouseenter', () => {
+              isMagneticActive = true;
+              targetBounds = target.getBoundingClientRect();
+              body.classList.add('cursor-magnetic');
+            });
+            target.addEventListener('mouseleave', () => {
+              isMagneticActive = false;
+              targetBounds = null;
+              body.classList.remove('cursor-magnetic');
+            });
+          }, 300);
         } else {
           loaderBar.style.width = `${progress}%`;
           loaderPct.textContent = `${Math.floor(progress).toString().padStart(3, '0')}%`;
@@ -1293,12 +1479,10 @@
         mouseY = e.clientY;
 
         if (window.innerWidth > 1120) {
-          // Continuous 3D Perspective spatial tracking formulas
           const skewX = -((e.clientY - (window.innerHeight / 2)) / (window.innerHeight / 2)) * 4.5;
           const skewY = ((e.clientX - (window.innerWidth / 2)) / (window.innerWidth / 2)) * 4.5;
           consoleWrapper.style.transform = `perspective(1200px) rotateX(${skewX}deg) rotateY(${skewY}deg)`;
 
-          // Custom 3D specularity limits mapping inside the CTA wrapper bounding box
           const btnRect = magneticCta.getBoundingClientRect();
           const internalBtnX = e.clientX - btnRect.left;
           const internalBtnY = e.clientY - btnRect.top;
@@ -1313,7 +1497,6 @@
         }
       });
 
-      // Manage continuous linear acceleration clashes cleanly
       consoleWrapper.addEventListener('mouseenter', () => {
         if (window.innerWidth > 1121) {
           consoleWrapper.classList.add('active-tilt');
@@ -1324,17 +1507,37 @@
         consoleWrapper.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg)`;
       });
 
+      // TAILORED INTERACTION HOOKS MATRIX (HOVER + CLICK ENGAGED)
       const magnets = document.querySelectorAll('.magnet-target, .console-tab');
       magnets.forEach(target => {
+        // HOVER SYSTEM INPUTS
         target.addEventListener('mouseenter', () => {
-          isMagneticActive = true;
-          targetBounds = target.getBoundingClientRect();
-          body.classList.add('cursor-magnetic');
+          if (!hasEntered) return;
+
+          uiHover.currentTime = 0;
+          uiHover.play().catch(e => {});
+          
+          if (target !== initBtn) { 
+            isMagneticActive = true;
+            targetBounds = target.getBoundingClientRect();
+            body.classList.add('cursor-magnetic');
+          }
         });
+
         target.addEventListener('mouseleave', () => {
-          isMagneticActive = false;
-          targetBounds = null;
-          body.classList.remove('cursor-magnetic');
+          if (target !== initBtn) { 
+            isMagneticActive = false;
+            targetBounds = null;
+            body.classList.remove('cursor-magnetic');
+          }
+        });
+
+        // MECHANICAL CLICK SYSTEM INPUTS (v0.4 LAUNCHED)
+        target.addEventListener('click', () => {
+          if (!hasEntered) return;
+
+          uiClick.currentTime = 0;
+          uiClick.play().catch(e => {});
         });
       });
 
@@ -1392,7 +1595,6 @@
 
       // 4. BESPOKE SYSTEM DEFAULT CONTEXT MENU TRANSITION INTERFACE
       window.addEventListener('contextmenu', (e) => {
-        // DEVELOPER PASS-THROUGH HOOK: If user holds Shift, bypass entirely to allow native platform inspect panels
         if (e.shiftKey) {
           contextMenu.style.setProperty('display', 'none', 'important');
           return;
@@ -1411,7 +1613,7 @@
 
         contextMenu.style.left = `${posX}px`;
         contextMenu.style.top = `${posY}px`;
-        contextMenu.style.setProperty('display', 'block', 'important'); // Safe override of standard hiding rule
+        contextMenu.style.setProperty('display', 'block', 'important');
       });
 
       window.addEventListener('click', (e) => {
@@ -1476,7 +1678,7 @@
           toast.classList.remove('active');
         }, 3200);
       }
-    });
+    }); // DOMContentLoaded CLOSED (Scope Secured)
   </script>
 </body>
 </html>
