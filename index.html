@@ -822,6 +822,33 @@
     opacity: 1;
   }
 
+  @media (max-width: 1600px) {
+    h1 {
+      font-size: 5vw
+    }
+  }
+
+  @media (max-width: 1350px) {
+    h1 {
+      font-size: clamp(28px, 9.5vw, 44px)
+    }
+  }
+
+  @media (max-width: 1024px) {
+        .main-split {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+        }
+
+        .hero-container {
+      flex: 0 0 auto  !important
+    }
+  .console-wrapper {
+      flex: 0 0 auto !important;
+
+  }
+  }
   /* RIGOROUS MOBILE BREAKPOINT MEDIA ARCHITECTURE */
   @media (max-width: 1120px) {
     body {
@@ -840,9 +867,9 @@
       height: 100dvh;
     }
     .main-split {
-      flex-direction: column;
+      /* flex-direction: column;
       align-items: flex-start;
-      justify-content: center;
+      justify-content: center; */
       gap: 3dvh; /* Viewport based spacing rhythm metrics prevent panel clipping overflows */
       padding: 0;
       flex: 1;
@@ -853,10 +880,10 @@
       max-width: 100%;
     }
     .hero-container {
-      flex: 0 0 auto;
+      flex: 0 0 50%
     }
     .console-wrapper {
-      flex: 0 0 auto;
+      flex: 0 0 50%;
       height: 28dvh; /* Strict scaling ceiling locks mobile space precisely */
       transform: none !important;
     }
