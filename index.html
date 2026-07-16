@@ -66,6 +66,23 @@
     width: 100%;
     overflow-x: hidden;
   }
+ #preloader-footer-instruction {
+        text-align: center;
+    }
+  @media (max-width: 460px) {
+    .nav-coordinates {
+      display: none;
+    }
+
+    .preloader-header-grid {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+    
+   
+  }
 
   @media (min-height: 768px) and (min-width: 1121px) {
     html, body {
@@ -84,10 +101,8 @@
     min-height: 100vh;
     min-height: 100dvh;
     cursor: none; /* Hide default platform cursor for premium tailored asset rendering */
-    
-    /* Multilayered volumetric ambient lighting cores */
     background-color: var(--bg);
-    background-image:
+    background-image: 
       radial-gradient(circle at 35% 40%, rgba(255, 255, 255, 0.035) 0%, transparent 60%),
       radial-gradient(circle at 85% 70%, rgba(77, 102, 184, 0.012) 0%, transparent 55%),
       radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.008) 0%, transparent 45%);
@@ -122,7 +137,7 @@
     width: 100%;
     max-width: 340px;
     position: relative;
-    min-height: 160px;
+    min-height: 200px;
     justify-content: center;
   }
 
@@ -180,7 +195,7 @@
     max-width: 80%;
   }
 
-  /* PREMIUM PRELOADER INTERACTION STYLES */
+  /* PREMIUM PRELOADER INTERACTION STYLES (PURE FLEXBOX FLOW) */
   .loader-stats-wrapper {
     width: 100%;
     display: flex;
@@ -188,32 +203,22 @@
     gap: 20px;
     transition: opacity 0.35s ease, transform 0.35s var(--transition-curve);
   }
-  
-  .loader-stats-wrapper.hidden {
-    opacity: 0;
-    transform: translateY(-12px);
-    pointer-events: none;
-  }
 
   .preloader-btn-wrapper {
-    position: absolute;
     width: 100%;
     max-width: 340px;
-    display: flex;
+    display: none; /* Layout swap engine controller */
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
     opacity: 0;
     transform: translateY(12px);
-    pointer-events: none;
     transition: opacity 0.4s ease, transform 0.4s var(--transition-curve);
-    top: 90px;
   }
 
   .preloader-btn-wrapper.active {
     opacity: 1;
     transform: translateY(0);
-    pointer-events: auto;
   }
 
   .preloader-btn {
@@ -303,12 +308,140 @@
     display: flex;
     align-items: center;
     gap: 4px;
+    margin-top: 4px;
   }
 
   .preloader-subtext::after {
     content: '_';
     color: var(--accent-bright);
     animation: terminalCaretBlink 0.9s infinite steps(2);
+  }
+
+  /* HIGH-END MULTI-SEGMENT LOCALIZATION CONTROL FOR SPLASH SCREEN */
+  .splash-lang-matrix {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .splash-lang-trigger {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--text-secondary);
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: none;
+    transition: all 0.3s var(--transition-curve);
+    outline: none;
+  }
+
+  .splash-lang-trigger:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+  }
+
+  .splash-lang-trigger.active {
+    border-color: var(--accent-bright);
+    color: var(--text-primary);
+    background: rgba(88, 112, 224, 0.06);
+    box-shadow: 0 0 16px rgba(88, 112, 224, 0.12);
+  }
+
+  /* ULTRA-PREMIUM BRANDED CUSTOM DROPDOWN SYSTEM FOR NAVIGATION LAYER */
+  .custom-nav-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .nav-lang-btn {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    background: #090a0f; /* Deep luxury obsidian solid body */
+    color: var(--text-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 6px 14px;
+    border-radius: 4px;
+    outline: none;
+    cursor: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: border-color 0.3s var(--transition-curve), color 0.3s var(--transition-curve), box-shadow 0.3s var(--transition-curve);
+  }
+
+  .nav-lang-btn:hover {
+    border-color: var(--accent-bright);
+    color: var(--text-primary);
+    box-shadow: 0 0 12px rgba(88, 112, 224, 0.15);
+  }
+
+  .nav-lang-btn svg {
+    width: 10px;
+    height: 10px;
+    stroke-width: 3px;
+    color: var(--text-secondary);
+    transition: transform 0.3s var(--transition-curve), color 0.3s var(--transition-curve);
+  }
+
+  .nav-lang-btn:hover svg {
+    color: var(--accent-bright);
+  }
+
+  .custom-nav-dropdown-wrapper.open .nav-lang-btn svg {
+    transform: rotate(180deg);
+  }
+
+  .custom-nav-dropdown-list {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    background: rgba(9, 10, 15, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    min-width: 140px;
+    padding: 4px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1000;
+    display: none; /* Toggled safely via UI engine rules */
+    flex-direction: column;
+    gap: 2px;
+    animation: menuFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .custom-nav-dropdown-wrapper.open .custom-nav-dropdown-list {
+    display: flex;
+  }
+
+  .custom-dropdown-item {
+    padding: 8px 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--text-secondary);
+    border-radius: 4px;
+    cursor: none;
+    transition: background 0.1s var(--transition-curve), color 0.1s var(--transition-curve);
+    text-align: left;
+  }
+
+  .custom-dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+  }
+
+  .custom-dropdown-item.active {
+    color: var(--accent-bright);
+    background: rgba(88, 112, 224, 0.04);
+    font-weight: bold;
   }
 
   /* PREMIUM CUSTOM HYBRID CURSOR */
@@ -1082,12 +1215,6 @@
     100% { border-color: rgba(255, 255, 255, 0.12); box-shadow: 0 0 0px rgba(88, 112, 224, 0); }
   }
 
-  @keyframes advancedSonar {
-    0% { transform: scaleX(1) scaleY(1); box-shadow: 0 0 0px rgba(88, 112, 224, 0); opacity: 0.8; border-color: rgba(88, 112, 224, 0.5); }
-    40% { box-shadow: 0 0 16px rgba(88, 112, 224, 0.2); }
-    100% { transform: scaleX(1.25) scaleY(1.85); box-shadow: 0 0 32px rgba(88, 112, 224, 0); opacity: 0; border-color: rgba(88, 112, 224, 0); }
-  }
-
   @keyframes terminalCaretBlink {
     from, to { opacity: 0; }
     50% { opacity: 1; }
@@ -1101,7 +1228,7 @@
     
     <!-- HIGH-END METADATA HEADER GUIDANCE -->
     <div class="preloader-header-grid" id="loader-header-banner" style="position: absolute; top: 40px; display: flex; justify-content: space-between; width: 100%; padding: 0 10%; font-family: 'Courier New', monospace; font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; opacity: 0; transition: opacity 0.5s ease; pointer-events: none; user-select: none;">
-      <span>AVX_CORE_V0.3 // SECURE CONNECTION</span>
+      <span id="preloader-lang-notice">AVX_CORE_V0.3 // SECURE CONNECTION</span>
       <span id="preloader-audio-notice">SYSTEM AUDIO: STANDBY</span>
     </div>
 
@@ -1120,7 +1247,13 @@
       <!-- GLOWING SYSTEM INITIALIZE TRIGGERS -->
       <div class="preloader-btn-wrapper" id="preloader-action">
         <button class="preloader-btn" id="init-btn">Initialize Infrastructure</button>
-        <span class="preloader-subtext">OR CLICK ANYWHERE TO INITIALIZE</span>
+        <span class="preloader-subtext" id="preloader-subtext">OR CLICK ANYWHERE TO INITIALIZE</span>
+        
+        <!-- HIGH VISIBILITY SEGMENTED CONTROL LAYER -->
+        <div class="splash-lang-matrix">
+          <button class="splash-lang-trigger magnet-target" data-lang="EN">ENGLISH // EN</button>
+          <button class="splash-lang-trigger magnet-target" data-lang="TR">TÜRKÇE // TR</button>
+        </div>
       </div>
     </div>
 
@@ -1136,29 +1269,15 @@
 
   <!-- Frosted System Context Menu Overlay -->
   <div class="custom-context-menu" id="context-menu">
-    <div class="context-item" id="context-back">
-      Back <span class="context-shortcut">⌥&larr;</span>
-    </div>
-    <div class="context-item" id="context-forward">
-      Forward <span class="context-shortcut">⌥&rarr;</span>
-    </div>
-    <div class="context-item" id="context-reload">
-      Reload <span class="context-shortcut">⌘R</span>
-    </div>
+    <div class="context-item" id="context-back">Back <span class="context-shortcut">⌥&larr;</span></div>
+    <div class="context-item" id="context-forward">Forward <span class="context-shortcut">⌥&rarr;</span></div>
+    <div class="context-item" id="context-reload">Reload <span class="context-shortcut">⌘R</span></div>
     <div class="context-sep"></div>
-    <div class="context-item" id="context-save">
-      Save Page As... <span class="context-shortcut">⌘S</span>
-    </div>
-    <div class="context-item" id="context-print">
-      Print... <span class="context-shortcut">⌘P</span>
-    </div>
+    <div class="context-item" id="context-save">Save Page As... <span class="context-shortcut">⌘S</span></div>
+    <div class="context-item" id="context-print">Print... <span class="context-shortcut">⌘P</span></div>
     <div class="context-sep"></div>
-    <div class="context-item" id="context-source">
-      View Page Source <span class="context-shortcut">⌘U</span>
-    </div>
-    <div class="context-item" id="context-inspect">
-      Inspect Element <span class="context-shortcut">⌥⌘I</span>
-    </div>
+    <div class="context-item" id="context-source">View Page Source <span class="context-shortcut">⌘U</span></div>
+    <div class="context-item" id="context-inspect">Inspect Element <span class="context-shortcut">⌥⌘I</span></div>
   </div>
 
   <!-- Telemetry Output Toast System -->
@@ -1170,7 +1289,24 @@
     <!-- 1. HEADER -->
     <header class="header-system">
       <a href="/" class="logo magnet-target">AVEXRA<span class="dot"></span></a>
-      <div class="nav-coordinates">41.0082° N, 28.9784° E</div>
+      <div style="display: flex; align-items: center; gap: 24px;">
+        
+        <!-- BRANDED CUSTOM DROPDOWN INTERFACE ARCHITECTURE -->
+        <div class="custom-nav-dropdown-wrapper" id="custom-nav-dropdown">
+          <button class="nav-lang-btn magnet-target" id="custom-nav-lang-trigger">
+            <span id="nav-lang-current">EN</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="custom-nav-dropdown-list" id="custom-nav-lang-list">
+            <div class="custom-dropdown-item magnet-target" data-value="EN">ENGLISH // EN</div>
+            <div class="custom-dropdown-item magnet-target" data-value="TR">TÜRKÇE // TR</div>
+          </div>
+        </div>
+
+        <div class="nav-coordinates">41.0082° N, 28.9784° E</div>
+      </div>
     </header>
 
     <!-- 2. MAIN SPLIT SYSTEM -->
@@ -1183,7 +1319,7 @@
             <span class="h1-line-wrapper"><span class="h1-line">Engineering</span></span>
           </h1>
 
-          <div class="subtitle-block">
+          <div class="subtitle-block" id="hero-sub-block">
             <p class="subtitle">We engineer high-performance digital systems for local businesses and startups.</p>
             <p class="subtitle" style="margin-top: 18px;">Our platform is currently under active engineering.</p>
           </div>
@@ -1254,7 +1390,7 @@
         <div class="plot-node-left"></div>
       </div>
       <div class="footer">
-        <div class="footer-left">
+        <div class="footer-left" id="footer-left-links">
           <a href="mailto:hello@avexradigital.com" class="magnet-target">hello@avexradigital.com</a>
           <span class="sep">&#9679;</span>
           <a href="https://www.linkedin.com/company/avexra-digital/?viewAsMember=true" target="_blank" rel="noopener" class="magnet-target">LinkedIn</a>
@@ -1262,21 +1398,12 @@
           <span>&copy; 2026 Avexra Digital</span>
         </div>
         <div class="footer-right">
-          <span>FOUNDATION RELEASE</span>
+          <span id="footer-release-label">FOUNDATION RELEASE</span>
           <span class="v">V0.3</span>
         </div>
       </div>
     </footer>
   </div>
-
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-58041NBZV7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-58041NBZV7');
-</script>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -1304,6 +1431,13 @@
       const loaderStats = document.getElementById('loader-stats');
       const preloaderAction = document.getElementById('preloader-action');
       const initBtn = document.getElementById('init-btn');
+      
+      // Localization Selectors
+      const customNavDropdown = document.getElementById('custom-nav-dropdown');
+      const customNavLangTrigger = document.getElementById('custom-nav-lang-trigger');
+      const navLangCurrent = document.getElementById('nav-lang-current');
+      const preloaderLangNotice = document.getElementById('preloader-lang-notice');
+      const preloaderSubtext = document.getElementById('preloader-subtext');
 
       const loaderBar = document.getElementById('loader-bar');
       const loaderPct = document.getElementById('loader-pct');
@@ -1323,25 +1457,180 @@
       let isCtaHovered = false;
 
       // ==========================================================================
+      // AUTOMATIC BILINGUAL DYNAMIC TRANSLATION ENGINE
+      // ==========================================================================
+      const localMatrix = {
+        EN: {
+          initBtn: "Initialize Infrastructure",
+          subtext: "OR CLICK ANYWHERE TO INITIALIZE",
+          audioStandby: "SYSTEM AUDIO: STANDBY",
+          audioReady: "SYSTEM AUDIO: READY TO BIND",
+          footerInstruct: "[ Interacting binds spatial audio and runs interface engine ]",
+          langNotice: "SYS // DETECTED LANGUAGE: EN",
+          h1Lines: ["Digital Growth", "Infrastructure", "Engineering"],
+          subtitles: [
+            "We engineer high-performance digital systems for local businesses and startups.",
+            "Our platform is currently under active engineering."
+          ],
+          ctaText: "Book Strategy Call",
+          footerRelease: "FOUNDATION RELEASE",
+          toastHistoryBack: "[SYSTEM] Executing history back sequence.",
+          toastHistoryForward: "[SYSTEM] Executing history forward sequence.",
+          toastReload: "[SYSTEM] Reloading frame coordinates...",
+          toastSave: "[SYSTEM] Compiling complete webpage asset offline...",
+          toastSource: "[SYSTEM] Native source channel unlocked. Press Shift + Right Click.",
+          toastInspect: "[SYSTEM] Native inspection unlocked. Press Shift + Right Click.",
+          contextMenu: ["Back", "Forward", "Reload", "Save Page As...", "Print...", "View Page Source", "Inspect Element"],
+          filesConfig: `<span class="c-bracket">{</span>\n  <span class="c-key">"agency"</span>: <span class="c-string">"Avexra Digital"</span>,\n  <span class="c-key">"engineering_standard"</span>: <span class="c-string">"High-Performance"</span>,\n  <span class="c-key">"outcomes"</span>: <span class="c-bracket">[</span>\n    <span class="c-string">"Local Search Dominance [SEO]"</span>,\n    <span class="c-string">"Frictionless Conversion [CRO]"</span>,\n    <span class="c-string">"Sub-second Native Load Speed"</span>\n  <span class="c-bracket">]</span>,\n  <span class="c-key">"infrastructure"</span>: <span class="c-bracket">{</span>\n    <span class="c-key">"framework"</span>: <span class="c-string">"Next.js / TypeScript"</span>,\n    <span class="c-key">"lighthouse"</span>: <span class="c-value">"100/100 Core Vitals"</span>\n  <span class="c-bracket">}</span>\n<span class="c-bracket">}</span>`,
+          filesDeploy: `<span class="c-prompt">$</span> npx avexra --deploy --production\n<span class="c-string">[INFRA] Running compilation matrix...</span>\n✔ Analyzing semantic DOM footprint [done]\n✔ Minifying hydration payloads [done]\n✔ Deferring non-critical scripts [done]\n✔ Core Web Vitals configuration optimized\n<span class="c-success">[SUCCESS] Build deployed in 12ms to edge.</span>`,
+          filesTelemetryLog: `<span class="c-prompt">$</span> cat telemetry.log\n<span class="c-string">[SYS] Core active. Initiating real-time coordinate logging...</span>\n<div class="telemetry-stream" id="tel-stream"></div>`,
+          telemetryString: (mx, my, hz, ang) => `<span class="c-prompt">[OK]</span> VECTOR: X:<span class="c-value">${mx}</span> Y:<span class="c-value">${my}</span> // <span class="c-key">FREQ</span>: ${hz}Hz // <span class="c-key">ANGLE</span>: ${ang}°`
+        },
+        TR: {
+          initBtn: "Altyapıyı Başlat",
+          subtext: "VEYA BAŞLATMAK İÇİN HERHANGİ BİR YERE TIKLAYIN",
+          audioStandby: "SİSTEM SESİ: BEKLEMEDE",
+          audioReady: "SİSTEM SESİ: BAĞLANMAYA HAZIR",
+          footerInstruct: "[ Etkileşim, uzamsal sesi bağlar ve arayüz motorunu çalıştırır ]",
+          langNotice: "SYS // ALGILANAN DİL: TR",
+          h1Lines: ["Dijital Büyüme", "Altyapı", "Mühendisliği"],
+          subtitles: [
+            "Yerel işletmeler ve startup'lar için yüksek performanslı dijital sistemler üretiyoruz.",
+            "Platformumuz şu anda aktif mühendislik aşamasındadır."
+          ],
+          ctaText: "Strateji Toplantısı Planla",
+          footerRelease: "TEMEL SÜRÜM LAKABI",
+          toastHistoryBack: "[SİSTEM] Geçmiş geri sarma dizisi çalıştırılıyor.",
+          toastHistoryForward: "[SİSTEM] Geçmiş ileri sarma dizisi çalıştırılıyor.",
+          toastReload: "[SİSTEM] Ekran koordinatları yeniden yükleniyor...",
+          toastSave: "[SİSTEM] Tüm web sayfası varlığı çevrimdışı derleniyor...",
+          toastSource: "[SİSTEM] Kaynak kanalı açıldı. Shift + Sağ Tık basın.",
+          toastInspect: "[SİSTEM] İnceleme paneli açıldı. Shift + Sağ Tık basın.",
+          contextMenu: ["Geri", "İleri", "Yeniden Yükle", "Sayfayı Farklı Kaydet...", "Yazdır...", "Sayfa Kaynağını Görüntüle", "Öğeyi Denetle"],
+          filesConfig: `<span class="c-bracket">{</span>\n  <span class="c-key">"ajans"</span>: <span class="c-string">"Avexra Digital"</span>,\n  <span class="c-key">"muhendislik_standarti"</span>: <span class="c-string">"Yuksek-Performans"</span>,\n  <span class="c-key">"sonuclar"</span>: <span class="c-bracket">[</span>\n    <span class="c-string">"Yerel Arama Hakimiyeti [SEO]"</span>,\n    <span class="c-string">"Surtunmesiz Donusum [CRO]"</span>,\n    <span class="c-string">"Saniye Alti Yerel Yuklenme Hizi"</span>\n  <span class="c-bracket">]</span>,\n  <span class="c-key">"altyapi"</span>: <span class="c-bracket">{</span>\n    <span class="c-key">"cekirdek"</span>: <span class="c-string">"Next.js / TypeScript"</span>,\n    <span class="c-key">"lighthouse"</span>: <span class="c-value">"100/100 Core Vitals"</span>\n  <span class="c-bracket">}</span>\n<span class="c-bracket">}</span>`,
+          filesDeploy: `<span class="c-prompt">$</span> npx avexra --deploy --production\n<span class="c-string">[ALTYAPI] Derleme matrisi calistiriliyor...</span>\n✔ Semantik DOM ayak izi analiz edildi [tamam]\n✔ Hidrasyon yukleri kucultuldu [tamam]\n✔ Kritik olmayan betikler ertelendi [tamam]\n✔ Core Web Vitals konfigurasyonu optimize edildi\n<span class="c-success">[BAŞARI] Altyapı 12ms icinde uca dagitildi.</span>`,
+          filesTelemetryLog: `<span class="c-prompt">$</span> cat telemetry.log\n<span class="c-string">[SYS] Cekirdek aktif. Gercek zamanli koordinat kaydi baslatiliyor...</span>\n<div class="telemetry-stream" id="tel-stream"></div>`,
+          telemetryString: (mx, my, hz, ang) => `<span class="c-prompt">[OK]</span> VEKTÖR: X:<span class="c-value">${mx}</span> Y:<span class="c-value">${my}</span> // <span class="c-key">FREKANS</span>: ${hz}Hz // <span class="c-key">AÇI</span>: ${ang}°`
+        }
+      };
+
+      let detectedPlatformLang = navigator.language.startsWith('tr') ? 'TR' : 'EN';
+      let currentActiveLang = sessionStorage.getItem('avx_lang') || detectedPlatformLang;
+
+      // NATIVE TRANSLATION CORE RENDERING DISPATCHER
+      function dispatchLocalization(targetLang) {
+        currentActiveLang = targetLang;
+        sessionStorage.setItem('avx_lang', targetLang);
+        
+        // Sync HTML document tag for perfect production crawlers / SEO indexers
+        document.documentElement.lang = targetLang.toLowerCase();
+        
+        // Sync active state attributes on splash segmented buttons matrix
+        document.querySelectorAll('.splash-lang-trigger').forEach(btn => {
+          if (btn.getAttribute('data-lang') === targetLang) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+
+        // Sync custom luxury navigation dropdown nodes
+        navLangCurrent.textContent = targetLang;
+        document.querySelectorAll('.custom-dropdown-item').forEach(item => {
+          if (item.getAttribute('data-value') === targetLang) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
+
+        // 1. PRELOADER LIVE TRANSLATIONS
+        if (!hasEntered) {
+          initBtn.textContent = localMatrix[targetLang].initBtn;
+          preloaderSubtext.textContent = localMatrix[targetLang].subtext;
+          loaderFooter.textContent = localMatrix[targetLang].footerInstruct;
+          preloaderLangNotice.textContent = localMatrix[targetLang].langNotice;
+          audioNoticeStatus.textContent = (progress >= 100) ? localMatrix[targetLang].audioReady : localMatrix[targetLang].audioStandby;
+        }
+
+        // 2. MAIN CORE WEBSITE CONTENT TRANSLATIONS
+        const h1LinesDOM = document.querySelectorAll('#hero-headline .h1-line');
+        if (h1LinesDOM.length >= 3) {
+          h1LinesDOM[0].textContent = localMatrix[targetLang].h1Lines[0];
+          h1LinesDOM[1].textContent = localMatrix[targetLang].h1Lines[1];
+          h1LinesDOM[2].textContent = localMatrix[targetLang].h1Lines[2];
+        }
+
+        const subtitleContainer = document.getElementById('hero-sub-block');
+        if (subtitleContainer) {
+          subtitleContainer.innerHTML = `
+            <p class="subtitle">${localMatrix[targetLang].subtitles[0]}</p>
+            <p class="subtitle" style="margin-top: 18px;">${localMatrix[targetLang].subtitles[1]}</p>
+          `;
+        }
+
+        const svgIcon = btnParallaxContent.querySelector('svg') ? btnParallaxContent.querySelector('svg').outerHTML : '';
+        btnParallaxContent.innerHTML = localMatrix[targetLang].ctaText + ' ' + svgIcon;
+        document.getElementById('footer-release-label').textContent = localMatrix[targetLang].footerRelease;
+
+        const contextMenuEntries = document.querySelectorAll('#context-menu .context-item');
+        if (contextMenuEntries.length >= 7) {
+          contextMenuEntries[0].innerHTML = `${localMatrix[targetLang].contextMenu[0]} <span class="context-shortcut">⌥&larr;</span>`;
+          contextMenuEntries[1].innerHTML = `${localMatrix[targetLang].contextMenu[1]} <span class="context-shortcut">⌥&rarr;</span>`;
+          contextMenuEntries[2].innerHTML = `${localMatrix[targetLang].contextMenu[2]} <span class="context-shortcut">⌘R</span>`;
+          contextMenuEntries[3].innerHTML = `${localMatrix[targetLang].contextMenu[3]} <span class="context-shortcut">⌘S</span>`;
+          contextMenuEntries[4].innerHTML = `${localMatrix[targetLang].contextMenu[4]} <span class="context-shortcut">⌘P</span>`;
+          contextMenuEntries[5].innerHTML = `${localMatrix[targetLang].contextMenu[5]} <span class="context-shortcut">⌘U</span>`;
+          contextMenuEntries[6].innerHTML = `${localMatrix[targetLang].contextMenu[6]} <span class="context-shortcut">⌥⌘I</span>`;
+        }
+
+        if (activeTab === 'config') consoleBody.innerHTML = localMatrix[targetLang].filesConfig;
+        if (activeTab === 'deploy') consoleBody.innerHTML = localMatrix[targetLang].filesDeploy;
+        if (activeTab === 'telemetry' && !telemetryInterval) consoleBody.innerHTML = localMatrix[targetLang].filesTelemetryLog;
+      }
+
+      // Segmented splash matrix listeners
+      document.querySelectorAll('.splash-lang-trigger').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation(); // Shield site launch trigger sequence explicitly
+          dispatchLocalization(btn.getAttribute('data-lang'));
+        });
+      });
+
+      // PREMIUM DYNAMIC UI TOGGLES FOR TAILORED DROPDOWN INTERFACE
+      customNavLangTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        customNavDropdown.classList.toggle('open');
+      });
+
+      document.querySelectorAll('.custom-dropdown-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          dispatchLocalization(item.getAttribute('data-value'));
+          customNavDropdown.classList.remove('open');
+        });
+      });
+
+      window.addEventListener('click', () => {
+        customNavDropdown.classList.remove('open');
+      });
+
+      // ==========================================================================
       // PREMIUM AUDIO SYSTEM CONFIGURATION
       // ==========================================================================
-      // 1. Loopable ambient background pad
-      const ambienceSound = new Audio('ambience.mp3');
+      const ambienceSound = new Audio('ambience.mp3'); /* Restored directly to .mp3 standard format hook */
       ambienceSound.volume = 0.3; 
       ambienceSound.loop = true;
       ambienceSound.preload = 'auto';
 
-      // 2. Short, impactful hardware initialization transition sound effect
       const introSound = new Audio('intro.ogg');
       introSound.volume = 0.55; 
       introSound.preload = 'auto';
 
-      // 3. LOCAL FILE HOVER AUDIO MOTOR
       const uiHover = new Audio('hover.ogg');
       uiHover.volume = 0.12; 
       uiHover.preload = 'auto';
 
-      // 4. MASTER CLICK AUDIO ENGINE (v0.4 NEW ACTOR)
       const uiClick = new Audio('click.ogg');
       uiClick.volume = 0.38; 
       uiClick.preload = 'auto';
@@ -1365,7 +1654,6 @@
         ambienceSound.play().catch(e => console.log("[SYSTEM] Audio loop play blocked:", e));
       }
 
-      // Initialize premium cursors instantly for preloader interaction
       if (window.innerWidth > 1120) {
         cursorDot.style.opacity = '1';
         cursorRing.style.opacity = '1';
@@ -1386,6 +1674,9 @@
       const totalSteps = loadingDuration / intervalTick;
       const increment = 100 / totalSteps;
 
+      // Initialize language mapping instantly across nodes
+      dispatchLocalization(currentActiveLang);
+
       const preloaderInterval = setInterval(() => {
         progress += increment;
         if (progress >= 100) {
@@ -1397,31 +1688,37 @@
           loaderLog.textContent = "READY // Spawning master viewport frame...";
 
           setTimeout(() => {
-            // Swap loader stats out for custom interactive entry CTA
-            loaderStats.classList.add('hidden');
-            preloaderAction.classList.add('active');
+            // FIXED: Structural flex layout swaps with verified active animations classes attached cleanly
+            loaderStats.style.display = 'none';
+            preloaderAction.style.display = 'flex';
+            
+            // Allow layout layout mapping loop to render then fire smooth hardware entrance
+            setTimeout(() => {
+              preloaderAction.classList.add('active');
+            }, 10);
 
-            // Reveal professional guidance metadata headers
             loaderHeader.style.opacity = "0.5";
             loaderFooter.style.opacity = "0.5";
-            audioNoticeStatus.textContent = "SYSTEM AUDIO: READY TO BIND";
+            
+            dispatchLocalization(currentActiveLang);
             audioNoticeStatus.style.color = "var(--accent-bright)";
 
-            // Set up TRIPLE-safe trigger interface: Full Screen Click + Button Click + Any Keypress
             preloader.addEventListener('click', enterSite);
             window.addEventListener('keydown', enterSite);
             
-            // Add custom button to magnetic targets
-            const target = initBtn;
-            target.addEventListener('mouseenter', () => {
-              isMagneticActive = true;
-              targetBounds = target.getBoundingClientRect();
-              body.classList.add('cursor-magnetic');
-            });
-            target.addEventListener('mouseleave', () => {
-              isMagneticActive = false;
-              targetBounds = null;
-              body.classList.remove('cursor-magnetic');
+            // Re-bind click actions explicitly targeting brand new items matrices
+            const selectTargets = document.querySelectorAll('.splash-lang-trigger, .preloader-btn');
+            selectTargets.forEach(target => {
+              target.addEventListener('mouseenter', () => {
+                isMagneticActive = true;
+                targetBounds = target.getBoundingClientRect();
+                body.classList.add('cursor-magnetic');
+              });
+              target.addEventListener('mouseleave', () => {
+                isMagneticActive = false;
+                targetBounds = null;
+                body.classList.remove('cursor-magnetic');
+              });
             });
           }, 300);
         } else {
@@ -1508,11 +1805,18 @@
       });
 
       // TAILORED INTERACTION HOOKS MATRIX (HOVER + CLICK ENGAGED)
-      const magnets = document.querySelectorAll('.magnet-target, .console-tab');
+      const magnets = document.querySelectorAll('.magnet-target, .console-tab, .custom-dropdown-item, .nav-lang-btn, .splash-lang-trigger');
       magnets.forEach(target => {
         // HOVER SYSTEM INPUTS
         target.addEventListener('mouseenter', () => {
-          if (!hasEntered) return;
+          if (!hasEntered) {
+            if (target.classList.contains('splash-lang-trigger')) {
+              isMagneticActive = true;
+              targetBounds = target.getBoundingClientRect();
+              body.classList.add('cursor-magnetic');
+            }
+            return;
+          }
 
           uiHover.currentTime = 0;
           uiHover.play().catch(e => {});
@@ -1525,14 +1829,12 @@
         });
 
         target.addEventListener('mouseleave', () => {
-          if (target !== initBtn) { 
-            isMagneticActive = false;
-            targetBounds = null;
-            body.classList.remove('cursor-magnetic');
-          }
+          isMagneticActive = false;
+          targetBounds = null;
+          body.classList.remove('cursor-magnetic');
         });
 
-        // MECHANICAL CLICK SYSTEM INPUTS (v0.4 LAUNCHED)
+        // MECHANICAL CLICK SYSTEM INPUTS
         target.addEventListener('click', () => {
           if (!hasEntered) return;
 
@@ -1550,22 +1852,19 @@
       });
 
       // 3. CONSOLE MODULE FILE COMPILER
-      const files = {
-        config: `<span class="c-bracket">{</span>\n  <span class="c-key">"agency"</span>: <span class="c-string">"Avexra Digital"</span>,\n  <span class="c-key">"engineering_standard"</span>: <span class="c-string">"High-Performance"</span>,\n  <span class="c-key">"outcomes"</span>: <span class="c-bracket">[</span>\n    <span class="c-string">"Local Search Dominance [SEO]"</span>,\n    <span class="c-string">"Frictionless Conversion [CRO]"</span>,\n    <span class="c-string">"Sub-second Native Load Speed"</span>\n  <span class="c-bracket">]</span>,\n  <span class="c-key">"infrastructure"</span>: <span class="c-bracket">{</span>\n    <span class="c-key">"framework"</span>: <span class="c-string">"Next.js / TypeScript"</span>,\n    <span class="c-key">"lighthouse"</span>: <span class="c-value">"100/100 Core Vitals"</span>\n  <span class="c-bracket">}</span>\n<span class="c-bracket">}</span>`,
-        deploy: `<span class="c-prompt">$</span> npx avexra --deploy --production\n<span class="c-string">[INFRA] Running compilation matrix...</span>\n✔ Analyzing semantic DOM footprint [done]\n✔ Minifying hydration payloads [done]\n✔ Deferring non-critical scripts [done]\n✔ Core Web Vitals configuration optimized\n<span class="c-success">[SUCCESS] Build deployed in 12ms to edge.</span>`,
-        telemetry: `<span class="c-prompt">$</span> cat telemetry.log\n<span class="c-string">[SYS] Core active. Initiating real-time coordinate logging...</span>\n<div class="telemetry-stream" id="tel-stream"></div>`
-      };
-
       function renderFile(key) {
         activeTab = key;
         clearInterval(telemetryInterval);
+        telemetryInterval = null; 
         
         document.querySelectorAll('.console-tab').forEach(tab => tab.classList.remove('active'));
         document.getElementById(`tab-${key}`).classList.add('active');
         
-        consoleBody.innerHTML = files[key];
+        if (key === 'config') consoleBody.innerHTML = localMatrix[currentActiveLang].filesConfig;
+        if (key === 'deploy') consoleBody.innerHTML = localMatrix[currentActiveLang].filesDeploy;
 
         if (key === 'telemetry') {
+          consoleBody.innerHTML = localMatrix[currentActiveLang].filesTelemetryLog;
           const stream = document.getElementById('tel-stream');
           telemetryInterval = setInterval(() => {
             if (stream) {
@@ -1575,7 +1874,7 @@
               const angle = (Math.atan2((window.innerHeight/2) - mouseY, mouseX - (window.innerWidth/2)) * (180 / Math.PI)).toFixed(1);
               const velHz = (mouseVelocity * 60).toFixed(0);
               
-              logItem.innerHTML = `<span class="c-prompt">[OK]</span> VECTOR: X:<span class="c-value">${mouseX}</span> Y:<span class="c-value">${mouseY}</span> // <span class="c-key">FREQ</span>: ${velHz}Hz // <span class="c-key">ANGLE</span>: ${angle}°`;
+              logItem.innerHTML = localMatrix[currentActiveLang].telemetryString(mouseX, mouseY, velHz, angle);
               stream.appendChild(logItem);
 
               while (stream.childNodes.length > 7) {
@@ -1624,25 +1923,25 @@
 
       document.getElementById('context-back').addEventListener('click', () => {
         contextMenu.style.setProperty('display', 'none', 'important');
-        triggerToast('[SYSTEM] Executing history back sequence.');
+        triggerToast(localMatrix[currentActiveLang].toastHistoryBack);
         setTimeout(() => window.history.back(), 300);
       });
 
       document.getElementById('context-forward').addEventListener('click', () => {
         contextMenu.style.setProperty('display', 'none', 'important');
-        triggerToast('[SYSTEM] Executing history forward sequence.');
+        triggerToast(localMatrix[currentActiveLang].toastHistoryForward);
         setTimeout(() => window.history.forward(), 300);
       });
 
       document.getElementById('context-reload').addEventListener('click', () => {
         contextMenu.style.setProperty('display', 'none', 'important');
-        triggerToast('[SYSTEM] Reloading frame coordinates...');
+        triggerToast(localMatrix[currentActiveLang].toastReload);
         setTimeout(() => window.location.reload(), 300);
       });
 
       document.getElementById('context-save').addEventListener('click', () => {
         contextMenu.style.setProperty('display', 'none', 'important');
-        triggerToast('[SYSTEM] Compiling complete webpage asset offline...');
+        triggerToast(localMatrix[currentActiveLang].toastSave);
         setTimeout(() => {
           const rawMarkup = document.documentElement.outerHTML;
           const blob = new Blob([rawMarkup], { type: 'text/html' });
@@ -1657,18 +1956,17 @@
 
       document.getElementById('context-print').addEventListener('click', () => {
         contextMenu.style.setProperty('display', 'none', 'important');
-        triggerToast('[SYSTEM] Mapping document print properties...');
         setTimeout(() => window.print(), 300);
       });
 
       document.getElementById('context-source').addEventListener('click', () => {
         contextMenu.style.setProperty('display', 'none', 'important');
-        triggerToast('[SYSTEM] Native source channel unlocked. Press Shift + Right Click.');
+        triggerToast(localMatrix[currentActiveLang].toastSource);
       });
 
       document.getElementById('context-inspect').addEventListener('click', () => {
         contextMenu.style.setProperty('display', 'none', 'important');
-        triggerToast('[SYSTEM] Native inspection unlocked. Press Shift + Right Click.');
+        triggerToast(localMatrix[currentActiveLang].toastInspect);
       });
 
       function triggerToast(message) {
@@ -1678,7 +1976,7 @@
           toast.classList.remove('active');
         }, 3200);
       }
-    }); // DOMContentLoaded CLOSED (Scope Secured)
+    });
   </script>
 </body>
 </html>
