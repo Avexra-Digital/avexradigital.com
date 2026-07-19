@@ -49,7 +49,6 @@
     --accent: #3e529a; /* Calibrated desaturated metallic slate blue */
     --accent-bright: #5870e0; /* Active operational blue */
     --transition-curve: cubic-bezier(0.16, 1, 0.3, 1);
-    --hairline: rgba(255, 255, 255, 0.06);
   }
 
   * { 
@@ -67,21 +66,9 @@
     width: 100%;
     overflow-x: hidden;
   }
-  
-  #preloader-footer-instruction {
-    text-align: center;
-  }
-  
-  /* MICRO-TACTILE NOISE OVERLAY FOR PREMIUM DESIGN CHARACTER */
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.015'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 100000;
-  }
-
+ #preloader-footer-instruction {
+        text-align: center;
+    }
   @media (max-width: 460px) {
     .nav-coordinates {
       display: none;
@@ -93,6 +80,8 @@
       align-items: center;
       gap: 12px;
     }
+    
+   
   }
 
   @media (min-height: 768px) and (min-width: 1121px) {
@@ -114,9 +103,9 @@
     cursor: none; /* Hide default platform cursor for premium tailored asset rendering */
     background-color: var(--bg);
     background-image: 
-      radial-gradient(circle at 35% 40%, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
-      radial-gradient(circle at 85% 70%, rgba(77, 102, 184, 0.01) 0%, transparent 55%),
-      radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.005) 0%, transparent 45%);
+      radial-gradient(circle at 35% 40%, rgba(255, 255, 255, 0.035) 0%, transparent 60%),
+      radial-gradient(circle at 85% 70%, rgba(77, 102, 184, 0.012) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.008) 0%, transparent 45%);
     background-attachment: fixed;
     user-select: none;
     -webkit-user-select: none;
@@ -560,47 +549,19 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 6%;
     width: 100%;
     position: relative;
     z-index: 2;
-    isolation: isolate; /* Locks negative stacking context locally to prevent element invisibility */
-  }
-
-  /* Unified Systems Architectural Backdrop */
-  .master-hero-blueprint {
-    position: absolute;
-    width: 130%;
-    height: 120%;
-    top: -10%;
-    left: -15%;
-    pointer-events: none;
-    user-select: none;
-    opacity: 0.055;
-    z-index: -2;
-  }
-
-  /* Soft Ambient Bloom flare positioned beneath split intersection zone */
-  .master-hero-ambient {
-    position: absolute;
-    width: 650px;
-    height: 650px;
-    border-radius: 50%;
-    top: 5%;
-    left: 25%;
-    pointer-events: none;
-    background: radial-gradient(circle, rgba(88, 112, 224, 0.08) 0%, transparent 70%);
-    filter: blur(100px);
-    z-index: -1;
   }
 
   .hero-container {
-    flex: 1 1 52%;
+    flex: 1 1 50%;
     max-width: 800px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     position: relative;
-    z-index: 10;
   }
 
   /* IMMACULATE CALIBRATED FLUID TYPOGRAPHY */
@@ -630,14 +591,6 @@
     transition: transform 0.4s var(--transition-curve), filter 0.4s var(--transition-curve);
   }
 
-  /* Primary Brand Color desaturated metallic gradient shift for "Infrastructure" (Shifted in tone, no white) */
-  .h1-line-highlight {
-    background: linear-gradient(135deg, #1f2744 0%, #3e529a 65%, #5870e0 100%) !important;
-    background-clip: text !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-  }
-
   body.site-ready .h1-line {
     animation: h1Entrance 0.9s var(--transition-curve) forwards;
   }
@@ -655,26 +608,6 @@
     h1:hover .h1-line-wrapper:nth-child(1) .h1-line { transition-delay: 0.0s; }
     h1:hover .h1-line-wrapper:nth-child(2) .h1-line { transition-delay: 0.03s; }
     h1:hover .h1-line-wrapper:nth-child(3) .h1-line { transition-delay: 0.06s; }
-  }
-
-  /* Quiet visual anchor wrapping around typography */
-  .hero {
-    position: relative;
-    padding: 30px;
-    margin: -30px;
-    border-radius: 8px;
-    background: radial-gradient(circle at 10% 20%, rgba(88, 112, 224, 0.015) 0%, transparent 60%);
-    border: 1px solid rgba(255, 255, 255, 0.005);
-    z-index: 10;
-  }
-
-  @media (max-width: 1120px) {
-    .hero {
-      padding: 0;
-      margin: 0;
-      background: none;
-      border: none;
-    }
   }
 
   .subtitle-block {
@@ -709,7 +642,7 @@
     display: inline-flex;
     align-items: center;
     padding: 16px 42px;
-    border: 1px solid rgba(88, 112, 224, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 4px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.01) 0%, transparent 100%);
     text-decoration: none;
@@ -717,7 +650,7 @@
     position: relative;
     overflow: hidden;
     transform-style: preserve-3d;
-    z-index: 35;
+    z-index: 2;
     opacity: 0;
     transform: translateY(16px);
     transition: 
@@ -783,36 +716,20 @@
     transform: translateY(-0.5px) scale(0.98);
   }
 
-  /* 3. INTERACTIVE AVEXRA OPERATING SYSTEM PANEL (FLOATING DECK) */
+  /* 3. INTERACTIVE METALLIC TELEMETRY WORKBENCH PANEL */
   .console-wrapper {
-    flex: 1 1 42%;
+    flex: 1 1 44%;
     max-width: 580px;
     width: 100%;
     position: relative;
     padding: 1px;
     border-radius: 8px;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 50%, rgba(77, 102, 184, 0.15) 100%);
-    box-shadow: 0 45px 95px -20px rgba(0, 0, 0, 0.85);
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.65);
     opacity: 0;
-    /* Resting perspective: stays completely straight on page load */
-    transform: perspective(1200px) rotateY(0deg) rotateX(0deg) scale(1);
+    transform: scale(0.98) translate3d(20px, 0, 0);
     transform-style: preserve-3d;
-    transition: transform 0.4s var(--transition-curve), opacity 1s var(--transition-curve);
-    z-index: 20;
-  }
-
-  /* Overlapping shift towards the left side container layout on large desktop viewports */
-  @media (min-width: 1121px) {
-    .console-wrapper {
-      margin-left: -5%;
-      margin-right: -2%;
-    }
-  }
-  @media (min-width: 1440px) {
-    .console-wrapper {
-      margin-left: -10%;
-      margin-right: -4%;
-    }
+    transition: transform 0.6s var(--transition-curve), opacity 1s var(--transition-curve);
   }
 
   .console-wrapper.active-tilt {
@@ -821,6 +738,7 @@
 
   body.site-ready .console-wrapper {
     opacity: 1;
+    transform: scale(1) translate3d(0, 0, 0);
     transition-delay: 0.28s;
   }
 
@@ -855,7 +773,7 @@
 
   .console-bar {
     height: 48px;
-    background: rgba(255, 255, 255, 0.025);
+    background: rgba(255, 255, 255, 0.02);
     border-bottom: 1px solid rgba(255, 255, 255, 0.035);
     display: flex;
     align-items: center;
@@ -1214,8 +1132,6 @@
       flex: 0 0 50%;
       height: 28dvh; 
       transform: none !important;
-      margin-left: 0 !important;
-      margin-right: 0 !important;
     }
     .console-container { height: 100%; }
     .console-tabs { width: 100%; gap: 1px; }
@@ -1395,44 +1311,11 @@
 
     <!-- 2. MAIN SPLIT SYSTEM -->
     <div class="main-split">
-      
-      <!-- Unified Systems Sprawling Blueprint backdrop -->
-      <svg class="master-hero-blueprint" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Structural coordinate axes -->
-        <line x1="50" y1="400" x2="1150" y2="400" stroke="#5870e0" stroke-width="0.35" stroke-dasharray="4 8" />
-        <line x1="500" y1="50" x2="500" y2="750" stroke="#5870e0" stroke-width="0.35" stroke-dasharray="4 8" />
-        
-        <!-- Large cropping trajectory circles -->
-        <circle cx="280" cy="400" r="320" stroke="#5870e0" stroke-width="0.75" stroke-dasharray="3 9" />
-        <circle cx="280" cy="400" r="240" stroke="#5870e0" stroke-width="0.5" />
-        <circle cx="280" cy="400" r="140" stroke="#5870e0" stroke-width="0.75" stroke-dasharray="1 4" />
-        <circle cx="850" cy="380" r="220" stroke="#5870e0" stroke-width="0.4" stroke-dasharray="2 6" />
-        
-        <!-- Diagonal vector projections linking left and right sections -->
-        <line x1="50" y1="150" x2="680" y2="650" stroke="#5870e0" stroke-width="0.3" />
-        <line x1="680" y1="150" x2="50" y2="650" stroke="#5870e0" stroke-width="0.3" />
-        
-        <!-- Calibration metrics and node markers -->
-        <circle cx="280" cy="80" r="3" fill="#5870e0" />
-        <circle cx="280" cy="720" r="3" fill="#5870e0" />
-        <circle cx="140" cy="400" r="3" fill="#5870e0" />
-        <circle cx="420" cy="400" r="3" fill="#5870e0" />
-        <rect x="275.5" y="395.5" width="9" height="9" stroke="#5870e0" stroke-width="0.5" fill="none" />
-        
-        <text x="305" y="75" fill="#5870e0" font-family="Courier New" font-size="7" opacity="0.6">AVX-SYS REFERENCE GRID [01]</text>
-        <text x="305" y="85" fill="#8a99ad" font-family="Courier New" font-size="6" opacity="0.4">NODE COORD: 280X // 400Y</text>
-      </svg>
-
-      <!-- Soft, volumetric systems ambient glow layer -->
-      <div class="master-hero-ambient"></div>
-
-      <!-- Left Side: Unburdened, beautifully anchored typography -->
       <div class="hero-container">
         <main class="hero">
           <h1 id="hero-headline">
             <span class="h1-line-wrapper"><span class="h1-line">Digital Growth</span></span>
-            <!-- Second line highlighted dynamically in primary electric-blue gradient -->
-            <span class="h1-line-wrapper"><span class="h1-line h1-line-highlight">Infrastructure</span></span>
+            <span class="h1-line-wrapper"><span class="h1-line">Infrastructure</span></span>
             <span class="h1-line-wrapper"><span class="h1-line">Engineering</span></span>
           </h1>
 
@@ -1455,7 +1338,7 @@
         </main>
       </div>
 
-      <!-- Right Side: AVEXRA Proprietary Operating System Deck -->
+      <!-- PREMIUM INTERACTIVE TELEMETRY CONSOLE -->
       <div class="console-wrapper" id="telemetry-wrapper">
         <div class="console-container" id="telemetry-console">
           <div class="console-grid-watermark"></div>
@@ -1491,7 +1374,7 @@
                 telemetry.log
               </button>
             </div>
-            <div class="console-status"><div class="light"></div>AVX_OS_V1.0</div>
+            <div class="console-status"><div class="light"></div>AVX_NODE_I</div>
           </div>
           
           <div class="console-body" id="console-body">
@@ -1715,7 +1598,7 @@
       });
 
       // PREMIUM DYNAMIC UI TOGGLES FOR TAILORED DROPDOWN INTERFACE
-      customNavDropdown.addEventListener('click', (e) => {
+      customNavLangTrigger.addEventListener('click', (e) => {
         e.stopPropagation();
         customNavDropdown.classList.toggle('open');
       });
@@ -1893,6 +1776,10 @@
         mouseY = e.clientY;
 
         if (window.innerWidth > 1120) {
+          const skewX = -((e.clientY - (window.innerHeight / 2)) / (window.innerHeight / 2)) * 4.5;
+          const skewY = ((e.clientX - (window.innerWidth / 2)) / (window.innerWidth / 2)) * 4.5;
+          consoleWrapper.style.transform = `perspective(1200px) rotateX(${skewX}deg) rotateY(${skewY}deg)`;
+
           const btnRect = magneticCta.getBoundingClientRect();
           const internalBtnX = e.clientX - btnRect.left;
           const internalBtnY = e.clientY - btnRect.top;
@@ -1907,23 +1794,6 @@
         }
       });
 
-      // Dedicated Operating System Deck mouse tracking (Active *only* on hovering edges)
-      consoleWrapper.addEventListener('mousemove', (e) => {
-        if (window.innerWidth > 1120) {
-          const bounds = consoleWrapper.getBoundingClientRect();
-          const x = e.clientX - bounds.left;
-          const y = e.clientY - bounds.top;
-
-          const midX = bounds.width / 2;
-          const midY = bounds.height / 2;
-
-          const rotateX = ((y - midY) / midY) * -8; // Damped, luxury 3D limit angles
-          const rotateY = ((x - midX) / midX) * 8;
-
-          consoleWrapper.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02) translate3d(0, 0, 15px)`;
-        }
-      });
-
       consoleWrapper.addEventListener('mouseenter', () => {
         if (window.innerWidth > 1121) {
           consoleWrapper.classList.add('active-tilt');
@@ -1931,8 +1801,7 @@
       });
       consoleWrapper.addEventListener('mouseleave', () => {
         consoleWrapper.classList.remove('active-tilt');
-        // Reverts back to a completely flat/straight resting layout smoothly on mouse leave
-        consoleWrapper.style.transform = `perspective(1200px) rotateY(0deg) rotateX(0deg) scale(1) translate3d(0, 0, 0)`;
+        consoleWrapper.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg)`;
       });
 
       // TAILORED INTERACTION HOOKS MATRIX (HOVER + CLICK ENGAGED)
@@ -2111,10 +1980,3 @@
   </script>
 </body>
 </html>
-```
-eof
-
-I have successfully updated the workspace file `index.html` with your custom gradient design and structural requirements fully optimized:
-- **Tone-shifted Metallic Gradient:** The second line of the headline (`Infrastructure`) has been beautifully transitioned into a professional desaturated gradient shifting strictly in tone from a dark slate blue `#1f2744` up to Avexra's active steel blue `#5870e0`. No pure white is used.
-- **Microscopical Tactile Noise Overlay:** Incorporated a highly sophisticated inline SVG fractal noise background overlay (`opacity: 0.015`) to provide a physical, organic material texture to the obsidian canvas (inspired by high-end design houses like Stripe and Nothing).
-- **Corrected Hover Triggering Bug:** Fully isolated the dynamic 3D perspective skew math strictly to the console chassis hover bounds. When not hovering over the operative console card deck, it stays perfectly straight, flat, and scale-anchored (rotation zero). All translation matrix elements compile smoothly. Enjoy!
