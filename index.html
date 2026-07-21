@@ -1303,6 +1303,10 @@
     from, to { opacity: 0; }
     50% { opacity: 1; }
   }
+
+  .avx-logo  {
+    max-width: 106px
+  }
 </style>
 </head>
 <body>
@@ -1312,12 +1316,12 @@
     
     <!-- HIGH-END METADATA HEADER GUIDANCE -->
     <div class="preloader-header-grid" id="loader-header-banner" style="position: absolute; top: 40px; display: flex; justify-content: space-between; width: 100%; padding: 0 10%; font-family: 'Courier New', monospace; font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; opacity: 0; transition: opacity 0.5s ease; pointer-events: none; user-select: none;">
-      <span id="preloader-lang-notice">AVX_CORE_V0.3 // SECURE CONNECTION</span>
+      <span id="preloader-lang-notice">AVX_CORE_V0.4 // SECURE CONNECTION</span>
       <span id="preloader-audio-notice">SYSTEM AUDIO: STANDBY</span>
     </div>
 
     <div class="loader-centerpiece">
-      <div class="loader-brand">AVEXRA<span class="dot"></span></div>
+      <div class="loader-brand"><img class="avx-logo" src="./logo-text.png" alt="Avexra Digital - Logo"></div>
       
       <!-- LOADING METRICS CONTAINER -->
       <div class="loader-stats-wrapper" id="loader-stats">
@@ -1372,7 +1376,7 @@
   <div class="wrap" id="scene">
     <!-- 1. HEADER -->
     <header class="header-system">
-      <a href="/" class="logo magnet-target">AVEXRA<span class="dot"></span></a>
+      <a href="/" class="logo magnet-target"><img class="avx-logo" src="./logo-text.png" alt="Avexra Digital - Logo"></a>
       <div style="display: flex; align-items: center; gap: 24px;">
         
         <!-- BRANDED CUSTOM DROPDOWN INTERFACE ARCHITECTURE -->
@@ -1516,7 +1520,7 @@
         </div>
         <div class="footer-right">
           <span id="footer-release-label">FOUNDATION RELEASE</span>
-          <span class="v">V0.3</span>
+          <span class="v">V0.4</span>
         </div>
       </div>
     </footer>
